@@ -4,11 +4,16 @@ import library.model.Article;
 import library.model.Client;
 import library.model.User;
 import library.persistence.LibraryDAO;
+import library.persistence.UserDao;
+import library.persistence.UserDaoJpa;
 
 public class ServiceLibrary {
-    private final LibraryDAO jdbcBook;
-    public ServiceLibrary(LibraryDAO jdbcBook){
+    private LibraryDAO jdbcBook;
+    private UserDaoJpa userDao;
+
+    public ServiceLibrary(LibraryDAO jdbcBook, UserDaoJpa userDao){
         this.jdbcBook = jdbcBook;
+        this.userDao = userDao;
     }
     public void save(Article articles) {
         jdbcBook.save(articles);
