@@ -2,6 +2,7 @@ package library.service;
 
 import library.model.Article;
 import library.model.Client;
+import library.model.User;
 import library.persistence.LibraryDAO;
 
 public class ServiceLibrary {
@@ -19,4 +20,11 @@ public class ServiceLibrary {
     }
 
 
+    public void createClient(String firstName, String lastName) {
+       User client = Client.builder()
+               .firstName(firstName)
+               .lastName(lastName)
+               .build();
+       userDao.save(client);
+    }
 }
