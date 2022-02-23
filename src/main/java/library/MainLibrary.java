@@ -35,6 +35,7 @@ public class MainLibrary {
 
 
         library.createClient("yan", "zhou");
+        System.out.print(library.findByName("yan"));
 
     }
 }

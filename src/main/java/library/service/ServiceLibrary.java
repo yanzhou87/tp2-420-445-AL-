@@ -7,6 +7,8 @@ import library.persistence.LibraryDAO;
 import library.persistence.UserDao;
 import library.persistence.UserDaoJpa;
 
+import java.util.List;
+
 public class ServiceLibrary {
     private LibraryDAO jdbcBook;
     private UserDaoJpa userDao;
@@ -31,5 +33,10 @@ public class ServiceLibrary {
                .lastName(lastName)
                .build();
        userDao.save(client);
+    }
+
+    public List<User> findByName(String firstName){
+        return userDao.findByName(firstName);
+
     }
 }
