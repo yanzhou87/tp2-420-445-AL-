@@ -2,6 +2,7 @@ package library;
 
 import library.model.Article;
 import library.model.Book;
+import library.model.Client;
 import library.persistence.LibraryDAOH2;
 import library.service.ServiceLibrary;
 
@@ -30,6 +31,9 @@ public class MainLibrary {
         System.out.println(book12);
         Article book13 = library.getAeticle(3);
         System.out.println(book13);
+
+
+       // library.createClient("yan");
 
     }
 }

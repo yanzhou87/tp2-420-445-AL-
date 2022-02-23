@@ -1,10 +1,9 @@
 package library.model;
 
-public class Admin extends User{
+import javax.persistence.Entity;
 
-    public Admin(String firstName, String lastName, int age, String address) {
-        super(firstName, lastName, age, address);
-    }
+@Entity
+public class Admin extends User{
 
     public boolean isAvailable(){return false;}
 

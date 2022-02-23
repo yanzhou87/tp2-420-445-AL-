@@ -1,6 +1,7 @@
 package library.service;
 
 import library.model.Article;
+import library.model.Client;
 import library.persistence.LibraryDAO;
 
 public class ServiceLibrary {
@@ -16,5 +17,6 @@ public class ServiceLibrary {
     public Article getAeticle(int articleId) {
         return jdbcBook.getArticle(articleId);
     }
+
 
 }

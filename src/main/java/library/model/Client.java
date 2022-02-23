@@ -1,12 +1,11 @@
 package library.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Client extends User{
 
     private String query = "";
-
-    public Client(String firstName, String lastName, int age,String address) {
-        super(firstName,lastName,age,address);
-    }
 
     public String getQuery() {
         return query;
