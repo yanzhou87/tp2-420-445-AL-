@@ -1,5 +1,7 @@
 package library.model;
 
+import java.util.List;
+
 public class Book implements Article {
 
     private int id;
@@ -10,6 +12,7 @@ public class Book implements Article {
     private int numbrePages;
     private String typeDocument;
     private int possibleQuantity;
+    private List<Exemplaire> exemplaires;
 
     public Book(int id, String title, String author, String editor, String yearPublication, String typeDocument,int possibleQuantity) {
         this.id = id;
@@ -119,6 +122,10 @@ public class Book implements Article {
 
     public void setTypeDocument(String typeDocument) {
         this.typeDocument = typeDocument;
+    }
+
+    public void addEcxemplaire(Exemplaire exemplaire){
+        exemplaires.add(exemplaire);
     }
 
     @Override
