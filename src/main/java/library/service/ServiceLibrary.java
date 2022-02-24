@@ -28,10 +28,9 @@ public class ServiceLibrary {
 
 
     public void createClient(String firstName, String lastName) {
-       User client = Client.builder()
-               .firstName(firstName)
-               .lastName(lastName)
-               .build();
+       User client = new Client();
+       client.setFirstName(firstName);
+       client.setLastName(lastName);
        userDao.save(client);
     }
 
