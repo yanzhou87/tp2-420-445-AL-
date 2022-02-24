@@ -11,7 +11,6 @@ public class Book implements Article {
     private String yearPublication;
     private int numbrePages;
     private String typeDocument;
-    private int possibleQuantity;
     private List<Exemplaire> exemplaires;
 
     public Book(int id, String title, String author, String editor, String yearPublication, String typeDocument,int possibleQuantity) {
@@ -21,7 +20,6 @@ public class Book implements Article {
         this.editor = editor;
         this.yearPublication = yearPublication;
         this.typeDocument = typeDocument;
-        this.possibleQuantity = possibleQuantity;
     }
 
     public Book(int id, String title, String author, String editor, String yearPublication, int numbrePages, String typeDocument, int possibleQuantity) {
@@ -32,7 +30,6 @@ public class Book implements Article {
         this.yearPublication = yearPublication;
         this.numbrePages = numbrePages;
         this.typeDocument = typeDocument;
-        this.possibleQuantity = possibleQuantity;
     }
 
 
@@ -42,14 +39,12 @@ public class Book implements Article {
         this.title = title;
         this.author = author;
         this.typeDocument = typeDocument;
-        this.possibleQuantity = possibleQuantity;
     }
 
-    public Book(int id, String title, String typeDocument,int possibleQuantity) {
+    public Book(int id, String title, String typeDocument) {
         this.id = id;
         this.title = title;
         this.typeDocument = typeDocument;
-        this.possibleQuantity = possibleQuantity;
     }
 
     public Book(){
@@ -90,11 +85,6 @@ public class Book implements Article {
     }
 
     @Override
-    public int getPossibleQuantity() {
-        return possibleQuantity;
-    }
-
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -132,10 +122,6 @@ public class Book implements Article {
         return exemplaires.size();
     }
 
-    @Override
-    public void setPossibleQuantity(int possibleQuantity) {
-        this.possibleQuantity = possibleQuantity;
-    }
 
     @Override
     public String toString() {
@@ -147,7 +133,6 @@ public class Book implements Article {
                 ", yearPublication='" + yearPublication + '\'' +
                 ", numbrePages=" + numbrePages +
                 ", typeDocument='" + typeDocument + '\'' +
-                ", possibleQuantity=" + possibleQuantity +
                 '}';
     }
 }

@@ -18,13 +18,10 @@ public interface Article {
 
     public double getDurationMovie();
 
-    public int getPossibleQuantity();
-
     public void setId(int id);
 
     public void setTitle(String title);
 
-    public void setPossibleQuantity(int possibleQuantity);
 
 
 
