@@ -1,9 +1,11 @@
 package library.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
-public class Client extends User{
+@DiscriminatorValue("client")
+public class Client extends LibraryUser {
+
 
     private String query = "";
 

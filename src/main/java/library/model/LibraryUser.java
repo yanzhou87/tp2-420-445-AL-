@@ -1,10 +1,5 @@
 package library.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,8 +7,10 @@ import javax.persistence.*;
 //@Builder
 //@AllArgsConstructor
 //@NoArgsConstructor
-@Table(name = "User")
-public abstract class User {
+//@Table(name = "User")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "User_type", discriminatorType = DiscriminatorType.STRING)
+public abstract class LibraryUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,14 +21,14 @@ public abstract class User {
     private int age;
     private String address;
 
-    public User(String firstName, String lastName, int age, String address) {
+    public LibraryUser(String firstName, String lastName, int age, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.address = address;
     }
 
-    public User() {
+    public LibraryUser() {
     }
 
     public int getId() {
@@ -72,5 +69,16 @@ public abstract class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "LibraryUser{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

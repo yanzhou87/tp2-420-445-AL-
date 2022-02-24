@@ -1,8 +1,5 @@
 package library;
 
-import library.model.Article;
-import library.model.Book;
-import library.model.Client;
 import library.persistence.LibraryDAOH2;
 import library.persistence.UserDaoJpa;
 import library.service.ServiceLibrary;
@@ -34,7 +31,7 @@ public class MainLibrary {
 //        System.out.println(book13);
 
 
-        library.createClient("yan", "zhou");
+        library.createClient("yan", "zhou", 33);
         System.out.print(library.findByName("yan"));
 
     }

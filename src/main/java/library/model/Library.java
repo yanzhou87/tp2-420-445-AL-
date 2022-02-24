@@ -7,9 +7,9 @@ public class Library {
     private int id;
     private String name;
     private List<Article> articles = new ArrayList<>();
-    private List<User> users = new ArrayList<>();
+    private List<LibraryUser> users = new ArrayList<>();
 
-    public Library(List<Article> articles, List<User> users) {
+    public Library(List<Article> articles, List<LibraryUser> users) {
         this.articles = articles;
         this.users = users;
     }
@@ -41,11 +41,11 @@ public class Library {
         this.articles = articles;
     }
 
-    public List<User> getUsers() {
+    public List<LibraryUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<LibraryUser> users) {
         this.users = users;
     }
 
@@ -53,7 +53,7 @@ public class Library {
         articles.add(article);
     }
 
-    public void addUser(User user){
+    public void addUser(LibraryUser user){
         users.add(user);
     }
 }

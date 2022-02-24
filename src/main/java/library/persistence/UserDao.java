@@ -1,11 +1,11 @@
 package library.persistence;
 
-import library.model.User;
+import library.model.LibraryUser;
 
 import java.util.List;
 
 public interface UserDao {
-    void save(User user);
+    void save(LibraryUser user);
 
-    List<User> findByName(String name);
+    List<LibraryUser> findByName(String name);
 }

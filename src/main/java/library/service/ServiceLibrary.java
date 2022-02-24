@@ -2,18 +2,17 @@ package library.service;
 
 import library.model.Article;
 import library.model.Client;
-import library.model.User;
+import library.model.LibraryUser;
 import library.persistence.LibraryDAO;
 import library.persistence.UserDao;
-import library.persistence.UserDaoJpa;
 
 import java.util.List;
 
 public class ServiceLibrary {
     private LibraryDAO jdbcBook;
-    private UserDaoJpa userDao;
+    private UserDao userDao;
 
-    public ServiceLibrary(LibraryDAO jdbcBook, UserDaoJpa userDao){
+    public ServiceLibrary(LibraryDAO jdbcBook, UserDao userDao){
         this.jdbcBook = jdbcBook;
         this.userDao = userDao;
     }
@@ -27,14 +26,18 @@ public class ServiceLibrary {
     }
 
 
-    public void createClient(String firstName, String lastName) {
-       User client = new Client();
-       client.setFirstName(firstName);
-       client.setLastName(lastName);
+    public void createClient(String firstName, String lastName, int age) {
+        LibraryUser client = new Client();
+//       User client = Client.builder()
+//                       .firstName(firstName)
+//                               .lastName(lastName)
+     client.setFirstName(firstName);
+     client.setLastName(lastName);
+     client.setAge(age);
        userDao.save(client);
     }
 
-    public List<User> findByName(String firstName){
+    public List<LibraryUser> findByName(String firstName){
         return userDao.findByName(firstName);
 
     }

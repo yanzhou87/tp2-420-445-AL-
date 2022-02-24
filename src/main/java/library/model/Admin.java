@@ -3,7 +3,7 @@ package library.model;
 import javax.persistence.Entity;
 
 @Entity
-public class Admin extends User{
+public class Admin extends LibraryUser {
 
     public boolean isAvailable(){return false;}
 

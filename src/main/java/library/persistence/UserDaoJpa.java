@@ -1,6 +1,6 @@
 package library.persistence;
 
-import library.model.User;
+import library.model.LibraryUser;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +11,7 @@ import java.util.List;
 public class UserDaoJpa implements UserDao {
      private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
     @Override
-    public void save(User user) {
+    public void save(LibraryUser user) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -22,14 +22,14 @@ public class UserDaoJpa implements UserDao {
     }
 
     @Override
-    public List<User> findByName(String name) {
+    public List<LibraryUser> findByName(String name) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final TypedQuery<User> query = em.createQuery("select u from User u where firstName like :nameToSearch", User.class );
+        final TypedQuery<LibraryUser> query = em.createQuery("select u from LibraryUser u where firstName like :nameToSearch", LibraryUser.class );
         query.setParameter("nameToSearch","%" + name + "%");
 
-        final List<User> users = query.getResultList();
+        final List<LibraryUser> users = query.getResultList();
 
         em.getTransaction().commit();
         em.close();
