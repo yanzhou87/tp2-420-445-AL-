@@ -128,6 +128,10 @@ public class Book implements Article {
         exemplaires.add(exemplaire);
     }
 
+    public int sizeExemplaires(){
+        return exemplaires.size();
+    }
+
     @Override
     public void setPossibleQuantity(int possibleQuantity) {
         this.possibleQuantity = possibleQuantity;
