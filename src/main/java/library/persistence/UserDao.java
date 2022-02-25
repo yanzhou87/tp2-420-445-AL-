@@ -8,4 +8,6 @@ public interface UserDao {
     void save(LibraryUser user);
 
     List<LibraryUser> findByName(String name);
+
+    LibraryUser findByIdUser(long id);
 }

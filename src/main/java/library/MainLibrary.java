@@ -48,8 +48,9 @@ public class MainLibrary {
         System.out.println(library.findByNameArticle("author"));
 
         LibraryUser client = library.findByIdUser(1L);
-        Article article = library.findByIdArticle(1L);
-        LocalDateTime date = LocalDateTime.now();
-        library.createEmprunt(client, article, date);
+
+//        Article article = library.findByIdArticle(1L);
+//        LocalDateTime date = LocalDateTime.now();
+//        library.createEmprunt(client, article, date);
     }
 }

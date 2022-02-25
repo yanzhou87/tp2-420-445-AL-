@@ -70,4 +70,9 @@ public class LibraryDaoJpa implements LibraryDao {
 
         return libraries;
     }
+
+    @Override
+    public LibraryUser findByIdUser(long id) {
+        return userDao.findByIdUser(id);
+    }
 }
