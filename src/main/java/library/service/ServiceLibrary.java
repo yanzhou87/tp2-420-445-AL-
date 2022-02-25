@@ -14,9 +14,10 @@ public class ServiceLibrary {
 
     public void createClient(String firstName, String lastName, int age) {
        LibraryUser client = new Client();
-     client.setFirstName(firstName);
-     client.setLastName(lastName);
-     client.setAge(age);
+       client.setFirstName(firstName);
+       client.setLastName(lastName);
+       client.setAge(age);
+
        libraryDao.saveUser(client);
     }
 
@@ -49,5 +50,13 @@ public class ServiceLibrary {
                 .name(name)
                 .build();
         libraryDao.saveLibrary(library);
+    }
+
+    public List<Library> findByNameLibrary(String name) {
+        return libraryDao.findByNameLibrary(name);
+    }
+
+    public void addBookInLibrary(String nameOfBook, Library library1) {
+
     }
 }

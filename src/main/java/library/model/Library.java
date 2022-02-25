@@ -21,10 +21,14 @@ public class Library {
 
     @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
     @ToString.Exclude
-    private List<Article> articles = new ArrayList<>();
+    private static List<Article> articles = new ArrayList<>();
 
     @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
     @ToString.Exclude
-    private List<LibraryUser> users = new ArrayList<>();
+    private static List<LibraryUser> users = new ArrayList<>();
+
+    public void addBook(Article article){
+        articles.add(article);
+    }
 
 }

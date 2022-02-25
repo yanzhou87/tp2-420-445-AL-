@@ -21,4 +21,6 @@ public interface LibraryDao {
     LibraryUser getUserById(long id);
 
     void saveLibrary(Library library);
+
+    List<Library> findByNameLibrary(String name);
 }
