@@ -1,6 +1,7 @@
 package library.persistence;
 
 import library.model.Article;
+import library.model.Emprunt;
 import library.model.Library;
 import library.model.LibraryUser;
 
@@ -79,5 +80,16 @@ public class LibraryDaoJpa implements LibraryDao {
     @Override
     public List<Article> findByIdArticle(long id) {
         return articleDao.findByIdArticle(id);
+    }
+
+    @Override
+    public void saveEmprunt(Emprunt emprunt) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+       em.persist(emprunt);
+
+       em.getTransaction().commit();
+       em.close();
     }
 }
