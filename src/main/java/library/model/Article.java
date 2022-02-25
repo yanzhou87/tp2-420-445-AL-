@@ -19,8 +19,8 @@ public abstract class Article{
 
     private String title;
 
-    @OneToMany(mappedBy = "article")
-    private List<Exemplaire> exemplaires;
+//    @OneToMany(mappedBy = "article")
+//    private List<Exemplaire> exemplaires;
 
     public Article(String title) {
         this.title = title;
@@ -45,24 +45,24 @@ public abstract class Article{
         this.title = title;
     }
 
-    public List<Exemplaire> getExemplaires() {
-        return exemplaires;
-    }
-
-    public void setExemplaires(List<Exemplaire> exemplaires) {
-        this.exemplaires = exemplaires;
-    }
-
-    public int getExemplaireSize(){
-        return exemplaires.size();
-    }
+//    public List<Exemplaire> getExemplaires() {
+//        return exemplaires;
+//    }
+//
+//    public void setExemplaires(List<Exemplaire> exemplaires) {
+//        this.exemplaires = exemplaires;
+//    }
+//
+//    public int getExemplaireSize(){
+//        return exemplaires.size();
+//    }
 
     @Override
     public String toString() {
         return "Article{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", exemplaires=" + exemplaires +
+             //   ", exemplaires=" + exemplaires +
                 '}';
     }
 }

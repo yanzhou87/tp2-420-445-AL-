@@ -36,6 +36,9 @@ public class ServiceLibrary {
 
         libraryDao.saveArticle(book);
     }
-    
 
+
+    public List<Article> findByNameArticle(String title) {
+        return libraryDao.findByNameArticle(title);
+    }
 }
