@@ -1,6 +1,9 @@
 package library.model;
 
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +16,23 @@ import java.util.List;
 @Table(name = "ARTICLE")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Article_type", discriminatorType = DiscriminatorType.STRING)
+@EqualsAndHashCode(exclude = "library")
 public abstract class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String title;
-    @OneToMany(mappedBy = "article")
-    private List<Exemplaire> exemplaires = new ArrayList<>();
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private static List<Exemplaire> exemplaires = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
+
+
     public Article(String title) {
         this.title = title;
     }
@@ -56,10 +64,6 @@ public abstract class Article{
         this.exemplaires = exemplaires;
     }
 
-    public void addExemplaires(Exemplaire exemplaire){
-        exemplaires.add(exemplaire);
-    }
-
     public int getExemplaireSize(){
         if(exemplaires.isEmpty()){
             return 0;
@@ -68,13 +72,18 @@ public abstract class Article{
 
     }
 
+    public void addExemplaires(Exemplaire exemplaire){
+        exemplaires.add(exemplaire);
+    }
+
 
     @Override
     public String toString() {
         return "Article{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-            //    ", exemplaires=" + exemplaires +
+              ", exemplaires=" + exemplaires +
+                ", nbExemplaires=" + getExemplaireSize() +
                 '}';
     }
 }

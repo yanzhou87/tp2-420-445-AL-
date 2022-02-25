@@ -20,7 +20,7 @@ public class LibraryDaoJpa implements LibraryDao {
 
     @Override
     public List<Article> findByNameArticle(String article) {
-        return articleDao.findByName(article);
+        return articleDao.findByNameArticle(article);
     }
 
     @Override

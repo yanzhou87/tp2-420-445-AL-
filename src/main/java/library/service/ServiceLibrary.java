@@ -13,10 +13,7 @@ public class ServiceLibrary {
     }
 
     public void createClient(String firstName, String lastName, int age) {
-        LibraryUser client = new Client();
-//       User client = Client.builder()
-//                       .firstName(firstName)
-//                               .lastName(lastName)
+       LibraryUser client = new Client();
      client.setFirstName(firstName);
      client.setLastName(lastName);
      client.setAge(age);
@@ -40,10 +37,17 @@ public class ServiceLibrary {
 
     public void createExemplairesOfBook(String title, int nb) {
         for(int i = 0 ; i < nb; i++){
-            Article exemplaire = new Exemplaire();
+            Exemplaire exemplaire = new Exemplaire();
             exemplaire.setTitle(title);
-            exemplaire.setExemplaires();
+            exemplaire.addExemplaires(exemplaire);
             libraryDao.saveArticle(exemplaire);
         }
+    }
+
+    public void createLibrary(String name) {
+        Library library = Library.builder()
+                .name(name)
+                .build();
+        libraryDao.saveLibrary(library);
     }
 }
