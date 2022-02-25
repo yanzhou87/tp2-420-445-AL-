@@ -1,9 +1,6 @@
 package library.service;
 
-import library.model.Article;
-import library.model.Book;
-import library.model.Client;
-import library.model.LibraryUser;
+import library.model.*;
 import library.persistence.LibraryDao;
 
 import java.util.List;
@@ -37,8 +34,15 @@ public class ServiceLibrary {
         libraryDao.saveArticle(book);
     }
 
-
     public List<Article> findByNameArticle(String title) {
         return libraryDao.findByNameArticle(title);
+    }
+
+    public void createExemplairesOfBook(String title, int nb) {
+        for(int i = 0 ; i < nb; i++){
+            Article exemplaire = new Exemplaire();
+            exemplaire.setTitle(title);
+            libraryDao.saveArticle(exemplaire);
+        }
     }
 }

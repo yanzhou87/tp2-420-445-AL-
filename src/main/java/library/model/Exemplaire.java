@@ -6,12 +6,12 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Exemplaire extends Article{
-//
-//    private int nbPossible = getExemplaireSize();
-//
-//    @ManyToOne
-//    @JoinColumn(name = "ARTICLE_ID")
-//    private Article article;
+
+    private int nbPossible = getExemplaireSize();
+
+    @ManyToOne
+    @JoinColumn(name = "ARTICLE_ID")
+    private Article article;
 
 
 

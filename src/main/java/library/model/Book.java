@@ -61,7 +61,7 @@ public class Book extends Article {
         return "Book{" +
                 "id=" + getId() +
                 ", title='" + getTitle() + '\'' +
-           //     ", nombre exemplaires=" + getExemplaireSize() +
+                ", nombre exemplaires=" + getExemplaireSize() +
                 "author='" + author + '\'' +
                 ", editor='" + editor + '\'' +
                 ", yearPublication='" + yearPublication + '\'' +
