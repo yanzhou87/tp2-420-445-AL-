@@ -1,10 +1,14 @@
 package library;
 
 import library.model.Article;
+import library.model.Client;
 import library.model.Library;
+import library.model.LibraryUser;
 import library.persistence.LibraryDaoJpa;
 import library.service.ServiceLibrary;
+import org.hibernate.type.LocalDateTimeType;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MainLibrary {
@@ -42,5 +46,10 @@ public class MainLibrary {
 
         System.out.println("//////////////   Find All Articles for title book  ////////////////");
         System.out.println(library.findByNameArticle("author"));
+
+        LibraryUser client = library.findByIdUser(1L);
+        Article article = library.findByIdArticle(1L);
+        LocalDateTime date = LocalDateTime.now();
+        library.createEmprunt(client, article, date);
     }
 }
