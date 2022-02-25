@@ -25,9 +25,12 @@ public class ServiceLibrary {
         return libraryDao.findByNameUser(firstName);
     }
 
-    public void createBook(String title) {
+    public void createBook(String title, String author, String date, String type) {
         Article book = new Book();
         book.setTitle(title);
+        book.setAuthor(author);
+        book.setYearPublication(date);
+        book.setTypeArticle(type);
 
         libraryDao.saveArticle(book);
     }

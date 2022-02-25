@@ -16,10 +16,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("book")
 public class Book extends Article {
 
-    private String author;
     private String editor;
-    private String yearPublication;
     private int numbrePages;
-    private String typeDocument;
+
 
 }

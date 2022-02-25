@@ -26,7 +26,8 @@ public class ArticleDaoJpa implements ArticleDao {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final TypedQuery<Article> query = em.createQuery("select a from Article a where title like :nameToSearch" , Article.class );
+        final TypedQuery<Article> query = em.createQuery("select a from Article a  where title like :nameToSearch " +
+                "or author like :nameToSearch or yearPublication like :nameToSearch or typeArticle like :nameToSearch"  , Article.class );
         query.setParameter("nameToSearch","%" + article + "%");
 
         final List<Article> articles = query.getResultList();

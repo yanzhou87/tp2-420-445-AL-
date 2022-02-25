@@ -23,6 +23,9 @@ public abstract class Article{
     private int id;
 
     private String title;
+    private String author;
+    private String yearPublication;
+    private String typeArticle;
 
     @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
     @ToString.Exclude
@@ -56,6 +59,38 @@ public abstract class Article{
         this.title = title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getYearPublication() {
+        return yearPublication;
+    }
+
+    public void setYearPublication(String yearPublication) {
+        this.yearPublication = yearPublication;
+    }
+
+    public String getTypeArticle() {
+        return typeArticle;
+    }
+
+    public void setTypeArticle(String typeArticle) {
+        this.typeArticle = typeArticle;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
     public List<Exemplaire> getExemplaires() {
         return exemplaires;
     }
@@ -82,8 +117,11 @@ public abstract class Article{
         return "Article{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-              ", exemplaires=" + exemplaires +
-                ", nbExemplaires=" + getExemplaireSize() +
+                ", author='" + author + '\'' +
+                ", yearPublication='" + yearPublication + '\'' +
+                ", typeArticle='" + typeArticle + '\'' +
+                ", nombre exemplaires='" + getExemplaireSize() + '\'' +
+                ", library=" + library +
                 '}';
     }
 }

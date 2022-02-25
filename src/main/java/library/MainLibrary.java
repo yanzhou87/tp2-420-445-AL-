@@ -18,9 +18,11 @@ public class MainLibrary {
         library.createClient("yan", "zhou", 33);
         library.createClient("shasha", "SS", 90);
 
-        library.createBook("book");
-        library.createBook("book1");
-        library.createBook("book2");
+        library.createBook("book","author", "2020-11-01","roman");
+        library.createBook("book1","author1","","");
+        library.createBook("book2","","","");
+
+        library.createExemplairesOfBook("book", 5);
 
         List<Library> libraries = library.findByNameLibrary("biblioY");
         List<Article> articles = library.findByNameArticle("book");
@@ -28,23 +30,17 @@ public class MainLibrary {
             for(Article article : articles){
                 library.addBookInLibrary(article,library1);
             }
-
         }
-
 
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
         System.out.println(library.findByNameArticle("book"));
-
-        library.createExemplairesOfBook("book", 5);
 
         System.out.println("//////////////   Find Users   ////////////////");
         System.out.println(library.findByNameUser("yan"));
         System.out.println(library.findByNameUser("shasha"));
 
         System.out.println("//////////////   Find All Articles for title book  ////////////////");
-        System.out.println(library.findByNameArticle("book"));
-
-
+        System.out.println(library.findByNameArticle("author"));
     }
 }
