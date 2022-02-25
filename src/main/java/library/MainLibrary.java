@@ -1,5 +1,6 @@
 package library;
 
+import library.model.Article;
 import library.model.Library;
 import library.persistence.LibraryDaoJpa;
 import library.service.ServiceLibrary;
@@ -22,8 +23,12 @@ public class MainLibrary {
         library.createBook("book2");
 
         List<Library> libraries = library.findByNameLibrary("biblioY");
+        List<Article> articles = library.findByNameArticle("book");
         for(Library library1 : libraries){
-            library.addBookInLibrary("book",library1);
+            for(Article article : articles){
+                library.addBookInLibrary(article,library1);
+            }
+
         }
 
 

@@ -56,7 +56,7 @@ public class ServiceLibrary {
         return libraryDao.findByNameLibrary(name);
     }
 
-    public void addBookInLibrary(String nameOfBook, Library library1) {
-
+    public void addBookInLibrary(Article article, Library library1) {
+        library1.addBook(article);
     }
 }
