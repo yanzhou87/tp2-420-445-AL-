@@ -42,6 +42,7 @@ public class ServiceLibrary {
         for(int i = 0 ; i < nb; i++){
             Article exemplaire = new Exemplaire();
             exemplaire.setTitle(title);
+            exemplaire.setExemplaires();
             libraryDao.saveArticle(exemplaire);
         }
     }

@@ -26,6 +26,9 @@ public abstract class LibraryUser {
     private int age;
     private String address;
 
+    @ManyToOne
+    @JoinColumn(name = "LIBRARY_ID")
+    private Library library;
     public LibraryUser(String firstName, String lastName, int age, String address) {
         this.firstName = firstName;
         this.lastName = lastName;

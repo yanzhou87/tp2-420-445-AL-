@@ -1,9 +1,18 @@
 package library.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
 @DiscriminatorValue("book")
 public class Book extends Article {
 
@@ -61,7 +70,7 @@ public class Book extends Article {
         return "Book{" +
                 "id=" + getId() +
                 ", title='" + getTitle() + '\'' +
-                ", nombre exemplaires=" + getExemplaireSize() +
+           //     ", nombre exemplaires=" + getExemplaireSize() +
                 "author='" + author + '\'' +
                 ", editor='" + editor + '\'' +
                 ", yearPublication='" + yearPublication + '\'' +
