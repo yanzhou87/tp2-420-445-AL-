@@ -13,9 +13,11 @@ public class MainLibrary {
 
         ServiceLibrary library = new ServiceLibrary(new LibraryDaoJpa());
 
-        library.createArticle(article);
+
+        library.createBook("book");
+
         library.findByNameArticle("");
-        
+
 //        Article book = new Book("bookA","yan1","yan","1999-09-01",300,"ROMAN");
 //        Article book1 = new Book("bookB","yan2","yan","2000-02-05",44,"MANUEL_SCOLAIRE");
 //        Article book2 = new Book("bookC","yan3","yan","1782-05-23",100,"ETUDE");

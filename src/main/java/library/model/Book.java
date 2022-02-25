@@ -13,17 +13,7 @@ public class Book extends Article {
     private int numbrePages;
     private String typeDocument;
 
-    public Book(String title) {
-        super(title);
-    }
-
-    public Book(String title, String author, String editor, String yearPublication, int numbrePages, String typeDocument) {
-        super(title);
-        this.author = author;
-        this.editor = editor;
-        this.yearPublication = yearPublication;
-        this.numbrePages = numbrePages;
-        this.typeDocument = typeDocument;
+    public Book() {
     }
 
     public String getAuthor() {

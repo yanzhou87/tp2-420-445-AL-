@@ -1,6 +1,7 @@
 package library.service;
 
 import library.model.Article;
+import library.model.Book;
 import library.model.Client;
 import library.model.LibraryUser;
 import library.persistence.LibraryDao;
@@ -29,5 +30,12 @@ public class ServiceLibrary {
         return libraryDao.findByNameUser(firstName);
     }
 
+    public void createBook(String title) {
+        Article book = new Book();
+        book.setTitle(title);
+
+        libraryDao.saveArticle(book);
+    }
+    
 
 }
