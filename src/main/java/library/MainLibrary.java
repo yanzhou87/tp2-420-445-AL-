@@ -50,7 +50,7 @@ public class MainLibrary {
         List<LibraryUser> client = library.findByIdUser(1L);
         System.out.println(client);
         List<Article> article = library.findByIdArticle(1L);
-//        LocalDateTime date = LocalDateTime.now();
-//        library.createEmprunt(client[], article[], date);
+        LocalDateTime date = LocalDateTime.now();
+        library.createEmprunt(client.get(0), article.get(0), date);
     }
 }

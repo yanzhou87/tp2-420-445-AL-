@@ -3,6 +3,7 @@ package library.service;
 import library.model.*;
 import library.persistence.LibraryDao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ServiceLibrary {
@@ -70,6 +71,13 @@ public class ServiceLibrary {
 
     public List<Article> findByIdArticle(long id) {
         return libraryDao.findByIdArticle(id);
+    }
+
+    public void createEmprunt(LibraryUser user, Article article, LocalDateTime date) {
+        Emprunt emprunt = new Emprunt();
+
+        libraryDao.saveEmprunt(emprunt);
+
     }
 }
 
