@@ -16,7 +16,6 @@ public class Exemplaire extends Article{
 
     @ManyToOne
     @JoinColumn(name = "ARTICLE_ID")
-
     private Article article;
 
 

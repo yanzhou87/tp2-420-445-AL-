@@ -15,15 +15,10 @@ import javax.persistence.*;
 @DiscriminatorValue("client")
 public class Client extends LibraryUser {
 
-    private String query = "";
+    @ManyToOne
+    @JoinColumn(name = "EMPRUNT_ID")
+    private Emprunt emprunt;
 
-    public String getQuery() {
-        return query;
-    }
-
-    public void setQuery(String query) {
-        this.query = query;
-    }
 
     public void borrow(){
 
