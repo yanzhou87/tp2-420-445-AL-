@@ -72,7 +72,12 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public LibraryUser findByIdUser(long id) {
+    public List<LibraryUser> findByIdUser(long id) {
         return userDao.findByIdUser(id);
+    }
+
+    @Override
+    public List<Article> findByIdArticle(long id) {
+        return articleDao.findByIdArticle(id);
     }
 }

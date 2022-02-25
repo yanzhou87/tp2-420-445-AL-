@@ -20,7 +20,7 @@ import java.util.List;
 public abstract class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private String title;
     private String author;
@@ -43,11 +43,11 @@ public abstract class Article{
     public Article() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

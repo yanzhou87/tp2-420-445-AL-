@@ -11,5 +11,6 @@ public interface ArticleDao {
 
     List<Article> findByNameArticle(String article);
 
-  //  List<Book> findByNameBook(String name);
+    List<Article> findByIdArticle(long id);
+
 }

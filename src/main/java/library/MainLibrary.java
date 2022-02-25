@@ -47,10 +47,10 @@ public class MainLibrary {
         System.out.println("//////////////   Find All Articles for title book  ////////////////");
         System.out.println(library.findByNameArticle("author"));
 
-        LibraryUser client = library.findByIdUser(1L);
-
-//        Article article = library.findByIdArticle(1L);
+        List<LibraryUser> client = library.findByIdUser(1L);
+        System.out.println(client);
+        List<Article> article = library.findByIdArticle(1L);
 //        LocalDateTime date = LocalDateTime.now();
-//        library.createEmprunt(client, article, date);
+//        library.createEmprunt(client[], article[], date);
     }
 }

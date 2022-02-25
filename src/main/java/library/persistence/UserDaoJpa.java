@@ -38,14 +38,14 @@ public class UserDaoJpa implements UserDao {
     }
 
     @Override
-    public LibraryUser findByIdUser(long id) {
+    public  List<LibraryUser> findByIdUser(long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         final TypedQuery<LibraryUser> query = em.createQuery("select u from LibraryUser u where id = id",LibraryUser.class);
 
-        final LibraryUser user = query.getSingleResult();
+        final List<LibraryUser> users = query.getResultList();
 
-        return user;
+        return users;
     }
 }

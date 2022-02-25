@@ -63,8 +63,13 @@ public class ServiceLibrary {
         library1.addBook(article);
     }
 
-    public LibraryUser findByIdUser(long id) {
+    public  List<LibraryUser> findByIdUser(long id) {
         return libraryDao.findByIdUser(id);
+    }
+
+
+    public List<Article> findByIdArticle(long id) {
+        return libraryDao.findByIdArticle(id);
     }
 }
 

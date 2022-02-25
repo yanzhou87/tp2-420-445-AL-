@@ -24,5 +24,7 @@ public interface LibraryDao {
 
     List<Library> findByNameLibrary(String name);
 
-    LibraryUser findByIdUser(long id);
+    List<LibraryUser> findByIdUser(long id);
+
+    List<Article> findByIdArticle(long id);
 }

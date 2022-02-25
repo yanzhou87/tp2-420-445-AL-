@@ -38,12 +38,16 @@ public class ArticleDaoJpa implements ArticleDao {
         return articles;
     }
 
-//    @Override
-//    public List<Book> findByNameBook(String name) {
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//
-//        final TypedQuery<Article>
-//        return null;
-//    }
+    @Override
+    public List<Article> findByIdArticle(long id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final TypedQuery<Article> query = em.createQuery("select a from Article a where id = id",Article.class);
+
+        final List<Article> articles = query.getResultList();
+        return articles;
+    }
+
+
 }
