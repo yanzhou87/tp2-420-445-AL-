@@ -1,28 +1,68 @@
 package library.model;
 
-public interface Article {
 
-    public int getId();
+import javax.persistence.*;
+import java.util.List;
 
-    public String getTitle();
+@Entity
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+@Table(name = "ARTICLE")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Article_type", discriminatorType = DiscriminatorType.STRING)
+public abstract class Article{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    public String getAuthor();
+    private String title;
 
-    public String getEditor();
+    @OneToMany(mappedBy = "article")
+    private List<Exemplaire> exemplaires;
 
-    public String getYearPublication();
+    public Article(String title) {
+        this.title = title;
+    }
 
-    public int getNumbrePages();
+    public Article() {
+    }
 
-    public String getTypeBook();
+    public int getId() {
+        return id;
+    }
 
-    public double getDurationMovie();
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void setId(int id);
+    public String getTitle() {
+        return title;
+    }
 
-    public void setTitle(String title);
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
+    public List<Exemplaire> getExemplaires() {
+        return exemplaires;
+    }
 
+    public void setExemplaires(List<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
+    }
 
+    public int getExemplaireSize(){
+        return exemplaires.size();
+    }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", exemplaires=" + exemplaires +
+                '}';
+    }
 }

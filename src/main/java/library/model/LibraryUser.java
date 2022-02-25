@@ -1,5 +1,10 @@
 package library.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +12,7 @@ import javax.persistence.*;
 //@Builder
 //@AllArgsConstructor
 //@NoArgsConstructor
-//@Table(name = "User")
+//@Table(name = "LibraryUser")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "User_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class LibraryUser {
