@@ -1,6 +1,7 @@
 package library.persistence;
 
 import library.model.Article;
+import library.model.Library;
 import library.model.LibraryUser;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface LibraryDao {
 
     LibraryUser getUserById(long id);
 
+    void saveLibrary(Library library);
 }

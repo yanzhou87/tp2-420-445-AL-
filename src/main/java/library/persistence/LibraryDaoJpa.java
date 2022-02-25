@@ -1,13 +1,18 @@
 package library.persistence;
 
 import library.model.Article;
+import library.model.Library;
 import library.model.LibraryUser;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class LibraryDaoJpa implements LibraryDao {
     private UserDao userDao = new UserDaoJpa();
     private ArticleDao articleDao = new ArticleDaoJpa();
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
     @Override
     public void saveArticle(Article article) {
           articleDao.save(article);
@@ -36,5 +41,16 @@ public class LibraryDaoJpa implements LibraryDao {
     @Override
     public LibraryUser getUserById(long id) {
         return null;
+    }
+
+    @Override
+    public void saveLibrary(Library library) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.persist(library);
+
+        em.getTransaction().commit();
+        em.close();
     }
 }
