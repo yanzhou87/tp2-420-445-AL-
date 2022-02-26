@@ -92,5 +92,9 @@ public class ServiceLibrary {
     private List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
         return libraryDao.findByNameArticleExemplaires(nameArticle);
     }
+
+    public List<Emprunt> findByNameOfClientEmprunt(String userName) {
+        return libraryDao.findByNameOfClientEmprunt(userName);
+    }
 }
 

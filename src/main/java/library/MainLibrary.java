@@ -55,6 +55,6 @@ public class MainLibrary {
         LocalDateTime date = LocalDateTime.now();
         library.createEmprunt((Client) clients.get(0), libraryList.get(0), "book", date);
 
-       // System.out.println(library.findByNameOfClientEmprunt("yan"));
+        System.out.println(library.findByNameOfClientEmprunt("yan"));
     }
 }

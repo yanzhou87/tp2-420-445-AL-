@@ -11,6 +11,7 @@ import java.util.List;
 public class LibraryDaoJpa implements LibraryDao {
     private UserDao userDao = new UserDaoJpa();
     private ArticleDao articleDao = new ArticleDaoJpa();
+    private EmpruntDao empruntDao = new EmpruntDaoJpa();
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
     @Override
     public void saveArticle(Article article) {
@@ -93,5 +94,10 @@ public class LibraryDaoJpa implements LibraryDao {
     @Override
     public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
         return articleDao.findByNameArticleExemplaires(nameArticle);
+    }
+
+    @Override
+    public List<Emprunt> findByNameOfClientEmprunt(String userName) {
+        return empruntDao.findByNameOfClientEmprunt(userName);
     }
 }
