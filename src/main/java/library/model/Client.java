@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,10 +16,12 @@ import javax.persistence.*;
 @DiscriminatorValue("client")
 public class Client extends LibraryUser {
 
-    @ManyToOne
-    @JoinColumn(name = "EMPRUNT_ID")
-    private Emprunt emprunt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
+    @OneToMany(mappedBy = "client")
+    private List<Emprunt> emprunts;
 
     public void borrow(){
 

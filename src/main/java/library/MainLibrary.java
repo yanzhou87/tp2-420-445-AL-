@@ -9,6 +9,7 @@ import library.service.ServiceLibrary;
 import org.hibernate.type.LocalDateTimeType;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainLibrary {
@@ -47,10 +48,13 @@ public class MainLibrary {
         System.out.println("//////////////   Find All Articles for title book  ////////////////");
         System.out.println(library.findByNameArticle("author"));
 
-        List<LibraryUser> client = library.findByIdUser(1L);
-        System.out.println(client);
-        List<Article> article = library.findByIdArticle(1L);
+        List<LibraryUser> clients = library.findByIdUser(1L);
+
+
+        List<Library> libraryList = library.findByNameLibrary("biblioY");
         LocalDateTime date = LocalDateTime.now();
-        library.createEmprunt(client.get(0), article.get(0), date);
+        library.createEmprunt((Client) clients.get(0), libraryList.get(0), "book", date);
+
+       // System.out.println(library.findByNameOfClientEmprunt("yan"));
     }
 }

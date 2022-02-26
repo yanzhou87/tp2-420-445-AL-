@@ -49,5 +49,17 @@ public class ArticleDaoJpa implements ArticleDao {
         return articles;
     }
 
+    @Override
+    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        final TypedQuery<Exemplaire> query = em.createQuery("select a from Article a where title like :nameToSearch",Exemplaire.class);
+        query.setParameter("nameToSearch","%" + nameArticle + "%");
+
+        final List<Exemplaire> exemplaires = query.getResultList();
+        return exemplaires;
+    }
+
 
 }

@@ -1,9 +1,6 @@
 package library.persistence;
 
-import library.model.Article;
-import library.model.Emprunt;
-import library.model.Library;
-import library.model.LibraryUser;
+import library.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -91,5 +88,10 @@ public class LibraryDaoJpa implements LibraryDao {
 
        em.getTransaction().commit();
        em.close();
+    }
+
+    @Override
+    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+        return articleDao.findByNameArticleExemplaires(nameArticle);
     }
 }

@@ -107,6 +107,7 @@ public abstract class Article{
 
     }
 
+
     public void addExemplaires(Exemplaire exemplaire){
         exemplaires.add(exemplaire);
     }

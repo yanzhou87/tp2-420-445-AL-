@@ -1,9 +1,6 @@
 package library.persistence;
 
-import library.model.Article;
-import library.model.Emprunt;
-import library.model.Library;
-import library.model.LibraryUser;
+import library.model.*;
 
 import java.util.List;
 
@@ -30,4 +27,6 @@ public interface LibraryDao {
     List<Article> findByIdArticle(long id);
 
     void saveEmprunt(Emprunt emprunt);
+
+    List<Exemplaire> findByNameArticleExemplaires(String nameArticle);
 }

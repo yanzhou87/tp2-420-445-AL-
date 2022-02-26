@@ -2,6 +2,7 @@ package library.persistence;
 
 import library.model.Article;
 import library.model.Book;
+import library.model.Exemplaire;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface ArticleDao {
 
     List<Article> findByIdArticle(long id);
 
+    List<Exemplaire> findByNameArticleExemplaires(String nameArticle);
 }

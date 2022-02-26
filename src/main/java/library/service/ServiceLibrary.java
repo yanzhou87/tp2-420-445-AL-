@@ -68,16 +68,29 @@ public class ServiceLibrary {
         return libraryDao.findByIdUser(id);
     }
 
-
     public List<Article> findByIdArticle(long id) {
         return libraryDao.findByIdArticle(id);
     }
 
-    public void createEmprunt(LibraryUser user, Article article, LocalDateTime date) {
+    public void createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
+        List<Exemplaire> exemplaires = findByNameArticleExemplaires(nameArticle);
         Emprunt emprunt = new Emprunt();
+        for(Exemplaire e : exemplaires){
+            if(e.getTitle().equals(nameArticle)){
+                emprunt = Emprunt.builder()
+                        .client(client)
+                        .library(library)
+                        .articles(e)
+                        .date(date)
+                        .build();
+            }
+        }
 
         libraryDao.saveEmprunt(emprunt);
+    }
 
+    private List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+        return libraryDao.findByNameArticleExemplaires(nameArticle);
     }
 }
 
