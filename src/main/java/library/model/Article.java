@@ -14,9 +14,9 @@ import java.util.List;
 //@AllArgsConstructor
 //@NoArgsConstructor
 @Table(name = "ARTICLE")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Article_type", discriminatorType = DiscriminatorType.STRING)
-@EqualsAndHashCode(exclude = "library")
+//@EqualsAndHashCode(exclude = "library")
 public abstract class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,10 +27,11 @@ public abstract class Article{
     private String yearPublication;
     private String typeArticle;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
-    @ToString.Exclude
-    private static List<Exemplaire> exemplaires = new ArrayList<>();
+//    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+//    @ToString.Exclude
+//    private static List<Exemplaire> exemplaires = new ArrayList<>();
 
+    private static int nbExemplaires = 0 ;
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
@@ -91,25 +92,16 @@ public abstract class Article{
         this.library = library;
     }
 
-    public List<Exemplaire> getExemplaires() {
-        return exemplaires;
+    public static int getNbExemplaires() {
+        return nbExemplaires;
     }
 
-    public void setExemplaires(List<Exemplaire> exemplaires) {
-        this.exemplaires = exemplaires;
+    public static void setNbExemplaires(int nbExemplaires) {
+        Article.nbExemplaires = nbExemplaires;
     }
 
-    public int getExemplaireSize(){
-        if(exemplaires.isEmpty()){
-            return 0;
-        }
-        return exemplaires.size();
-
-    }
-
-
-    public void addExemplaires(Exemplaire exemplaire){
-        exemplaires.add(exemplaire);
+    public void addNbExemplaires(){
+        nbExemplaires++;
     }
 
 
@@ -121,7 +113,7 @@ public abstract class Article{
                 ", author='" + author + '\'' +
                 ", yearPublication='" + yearPublication + '\'' +
                 ", typeArticle='" + typeArticle + '\'' +
-                ", nombre exemplaires='" + getExemplaireSize() + '\'' +
+                ", nombre exemplaires='" + getNbExemplaires() + '\'' +
                 ", library=" + library +
                 '}';
     }

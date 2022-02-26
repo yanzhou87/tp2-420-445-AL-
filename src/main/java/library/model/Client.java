@@ -1,9 +1,6 @@
 package library.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,13 +11,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue("client")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "LibraryUser_type", discriminatorType = DiscriminatorType.STRING)
+@EqualsAndHashCode(exclude = "article")
 public class Client extends LibraryUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",  fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Emprunt> emprunts;
 
     public void borrow(){

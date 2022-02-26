@@ -82,17 +82,11 @@ public class LibraryDaoJpa implements LibraryDao {
 
     @Override
     public void saveEmprunt(Emprunt emprunt) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-       em.persist(emprunt);
-
-       em.getTransaction().commit();
-       em.close();
+        empruntDao.saveEmprunt(emprunt);
     }
 
     @Override
-    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+    public List<Article> findByNameArticleExemplaires(String nameArticle) {
         return articleDao.findByNameArticleExemplaires(nameArticle);
     }
 

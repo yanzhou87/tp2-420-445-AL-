@@ -6,10 +6,8 @@ import library.model.Library;
 import library.model.LibraryUser;
 import library.persistence.LibraryDaoJpa;
 import library.service.ServiceLibrary;
-import org.hibernate.type.LocalDateTimeType;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainLibrary {
@@ -18,7 +16,7 @@ public class MainLibrary {
         ServiceLibrary library = new ServiceLibrary(new LibraryDaoJpa());
 
         library.createLibrary("biblioY");
-        System.out.println();
+        System.out.println(library.findByNameLibrary("biblioY"));
 
         library.createClient("yan", "zhou", 33);
         library.createClient("shasha", "SS", 90);
@@ -53,6 +51,7 @@ public class MainLibrary {
 
         List<Library> libraryList = library.findByNameLibrary("biblioY");
         LocalDateTime date = LocalDateTime.now();
+        System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
         library.createEmprunt((Client) clients.get(0), libraryList.get(0), "book", date);
 
         System.out.println(library.findByNameOfClientEmprunt("yan"));

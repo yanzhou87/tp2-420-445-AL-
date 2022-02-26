@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleDaoJpa implements ArticleDao {
@@ -50,15 +51,26 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+    public List<Article> findByNameArticleExemplaires(String nameArticle) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final TypedQuery<Exemplaire> query = em.createQuery("select a from Article a where title like :nameToSearch",Exemplaire.class);
-        query.setParameter("nameToSearch","%" + nameArticle + "%");
+        final TypedQuery<Article> query = em.createQuery("select a from Article a where title like :nameToSearch",Article.class);
 
-        final List<Exemplaire> exemplaires = query.getResultList();
-        return exemplaires;
+        query.setParameter("nameToSearch",nameArticle);
+
+        final List<Article> articles = query.getResultList();
+
+//        List<Exemplaire> exemplaireList = new ArrayList<>();
+//
+//        for(Article a : articles){
+//
+//            System.out.println("88888888888888   " +a);
+//           // exemplaireList.add(a);
+//            System.out.println("00000000000000000000000");
+//        }
+
+        return articles;
     }
 
 

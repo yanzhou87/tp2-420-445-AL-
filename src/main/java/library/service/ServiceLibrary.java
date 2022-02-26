@@ -2,6 +2,7 @@ package library.service;
 
 import library.model.*;
 import library.persistence.LibraryDao;
+import library.persistence.LibraryDaoJpa;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,7 +45,7 @@ public class ServiceLibrary {
         for(int i = 0 ; i < nb; i++){
             Exemplaire exemplaire = new Exemplaire();
             exemplaire.setTitle(title);
-            exemplaire.addExemplaires(exemplaire);
+            exemplaire.addNbExemplaires();
             libraryDao.saveArticle(exemplaire);
         }
     }
@@ -73,9 +74,11 @@ public class ServiceLibrary {
     }
 
     public void createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
-        List<Exemplaire> exemplaires = findByNameArticleExemplaires(nameArticle);
+
+        List<Article> exemplaires = findByNameArticleExemplaires(nameArticle);
+
         Emprunt emprunt = new Emprunt();
-        for(Exemplaire e : exemplaires){
+        for(Article e : exemplaires){
             if(e.getTitle().equals(nameArticle)){
                 emprunt = Emprunt.builder()
                         .client(client)
@@ -89,7 +92,7 @@ public class ServiceLibrary {
         libraryDao.saveEmprunt(emprunt);
     }
 
-    private List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+    private List<Article> findByNameArticleExemplaires(String nameArticle) {
         return libraryDao.findByNameArticleExemplaires(nameArticle);
     }
 

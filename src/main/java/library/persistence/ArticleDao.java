@@ -14,5 +14,5 @@ public interface ArticleDao {
 
     List<Article> findByIdArticle(long id);
 
-    List<Exemplaire> findByNameArticleExemplaires(String nameArticle);
+    List<Article> findByNameArticleExemplaires(String nameArticle);
 }

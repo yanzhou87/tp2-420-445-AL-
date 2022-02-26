@@ -28,7 +28,7 @@ public interface LibraryDao {
 
     void saveEmprunt(Emprunt emprunt);
 
-    List<Exemplaire> findByNameArticleExemplaires(String nameArticle);
+    List<Article> findByNameArticleExemplaires(String nameArticle);
 
     List<Emprunt> findByNameOfClientEmprunt(String userName);
 }
