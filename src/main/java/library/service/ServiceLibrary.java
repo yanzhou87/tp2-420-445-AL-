@@ -46,8 +46,8 @@ public class ServiceLibrary {
                 if(a.getTitle().equals(name)){
                     for(int i = 0 ; i < nb; i++){
                         Exemplaire exemplaire = new Exemplaire();
+                        exemplaire.setTitle(name);
                         exemplaire.setArticle(a);
-                        exemplaire.setNombres(nb);
                         libraryDao.saveArticle(exemplaire);
                     }
                 }
@@ -62,7 +62,7 @@ public class ServiceLibrary {
         libraryDao.saveLibrary(library);
     }
 
-    public List<Library> findByNameLibrary(String name) {
+    public Library findByNameLibrary(String name) {
         return libraryDao.findByNameLibrary(name);
     }
 
@@ -70,7 +70,7 @@ public class ServiceLibrary {
         library1.addArticle(article);
     }
 
-    public  List<LibraryUser> findByIdUser(long id) {
+    public  LibraryUser findByIdUser(long id) {
         return libraryDao.findByIdUser(id);
     }
 
@@ -97,7 +97,7 @@ public class ServiceLibrary {
         libraryDao.saveEmprunt(emprunt);
     }
 
-    private List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
         return libraryDao.findByNameArticleExemplaires(nameArticle);
     }
 

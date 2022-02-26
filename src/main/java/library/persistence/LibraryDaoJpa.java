@@ -55,23 +55,29 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public List<Library> findByNameLibrary(String name) {
+    public Library findByNameLibrary(String name) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         final TypedQuery<Library> query = em.createQuery("select l from Library l where name like :nameToSearch ",Library.class);
-        query.setParameter("nameToSearch", name );
+        query.setParameter("nameToSearch", "%" + name + "%");
 
         List<Library> libraries = query.getResultList();
 
         em.getTransaction().commit();
         em.close();
 
-        return libraries;
+        for(Library library : libraries){
+            if(library.getName().equals(name)){
+                return library;
+            }
+        }
+
+        return null;
     }
 
     @Override
-    public List<LibraryUser> findByIdUser(long id) {
+    public LibraryUser findByIdUser(long id) {
         return userDao.findByIdUser(id);
     }
 

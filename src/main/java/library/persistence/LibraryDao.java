@@ -20,9 +20,9 @@ public interface LibraryDao {
 
     void saveLibrary(Library library);
 
-    List<Library> findByNameLibrary(String name);
+    Library findByNameLibrary(String name);
 
-    List<LibraryUser> findByIdUser(long id);
+    LibraryUser findByIdUser(long id);
 
     List<Article> findByIdArticle(long id);
 

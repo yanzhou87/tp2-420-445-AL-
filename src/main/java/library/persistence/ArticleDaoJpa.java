@@ -47,6 +47,10 @@ public class ArticleDaoJpa implements ArticleDao {
         final TypedQuery<Article> query = em.createQuery("select a from Article a where id = id",Article.class);
 
         final List<Article> articles = query.getResultList();
+
+        em.getTransaction().commit();
+        em.close();
+
         return articles;
     }
 
@@ -64,26 +68,18 @@ public class ArticleDaoJpa implements ArticleDao {
                 }
             }
         }
+
         return exemplaireList;
     }
 
     @Override
     public boolean isValidForExemplaire(String name) {
 
-        final List<Article> articles = findByNameArticle(name);
+        List<Exemplaire> exemplaires = findByNameArticleExemplaires(name);
 
-        List<Exemplaire> exemplaireList = new ArrayList<>();
-
-        for(Article a : articles){
-            if(a instanceof Exemplaire && a.getTitle().equals(name)){
-                if(((Exemplaire) a).getNombres() != 0){
-                    return true;
-                }
-            }
-        }
-
+       if(!exemplaires.isEmpty()){
+           return true;
+       }
         return false;
     }
-
-
 }

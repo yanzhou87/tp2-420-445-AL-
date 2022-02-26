@@ -9,5 +9,5 @@ public interface UserDao {
 
     List<LibraryUser> findByName(String name);
 
-    List<LibraryUser> findByIdUser(long id);
+    LibraryUser findByIdUser(long id);
 }

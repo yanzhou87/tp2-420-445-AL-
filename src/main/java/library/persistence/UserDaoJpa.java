@@ -38,7 +38,7 @@ public class UserDaoJpa implements UserDao {
     }
 
     @Override
-    public  List<LibraryUser> findByIdUser(long id) {
+    public LibraryUser findByIdUser(long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -46,6 +46,19 @@ public class UserDaoJpa implements UserDao {
 
         final List<LibraryUser> users = query.getResultList();
 
-        return users;
+        em.getTransaction().commit();
+        em.close();
+
+        for(LibraryUser user : users){
+            System.out.println("====================  =================================" + user.getId() );
+            System.out.println("====================  =================================" + (user.getId() == id ));
+
+            if(user.getId() == id){
+
+               return user;
+            }
+        }
+
+        return null;
     }
 }

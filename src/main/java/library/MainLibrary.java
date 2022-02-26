@@ -22,23 +22,19 @@ public class MainLibrary {
         library.createBook("book1","author1","","");
         library.createBook("book2","","","");
 
+        Library librarie = library.findByNameLibrary("biblioY");
+        List<Article> articles = library.findByNameArticle("book");
+
+            for(Article article : articles){
+                    library.addArticleInLibrary(article,librarie);
+            }
+
         List<Article> articles1 = library.findByNameArticle("book");
         library.createExemplairesOfBook(articles1, 5, "book");
 
         System.out.println("//////////////   Find Exemplaires  ////////////////");
+        System.out.println(library.findByNameArticleExemplaires("book"));
         System.out.println(library.isValidForExemplaire("book"));
-
-
-        List<Library> libraries = library.findByNameLibrary("biblioY");
-        List<Article> articles = library.findByNameArticle("book");
-
-        for(Library library1 : libraries){
-            for(Article article : articles){
-                if(article instanceof Book || article instanceof Exemplaire){
-                    library.addArticleInLibrary(article,library1);
-                }
-            }
-        }
 
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
@@ -51,13 +47,14 @@ public class MainLibrary {
         System.out.println("//////////////   Find All Articles for title book  ////////////////");
         System.out.println(library.findByNameArticle("author"));
 
-        List<LibraryUser> clients = library.findByIdUser(1L);
+        System.out.println("//////////////   Find All User for id 1 ////////////////");
+        LibraryUser client = library.findByIdUser(2L);
+        System.out.println(client);
 
-
-        List<Library> libraryList = library.findByNameLibrary("biblioY");
+        Library libraryList = library.findByNameLibrary("biblioY");
         LocalDateTime date = LocalDateTime.now();
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
-        library.createEmprunt((Client) clients.get(0), libraryList.get(0), "book", date);
+        library.createEmprunt((Client) client, libraryList, "book", date);
 
         List<Emprunt> emprunts = library.findByNameOfClientEmprunt("yan");
         for(Emprunt e : emprunts){
