@@ -51,15 +51,17 @@ public class MainLibrary {
         LibraryUser client = library.findByIdUser(2L);
         System.out.println(client);
 
-        Library libraryList = library.findByNameLibrary("biblioY");
-        LocalDateTime date = LocalDateTime.now();
+
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
-        library.createEmprunt((Client) client, libraryList, "book", date);
+
+        LocalDateTime date = LocalDateTime.now();
+        library.createEmprunt((Client) client, librarie, "book", date);
 
         List<Emprunt> emprunts = library.findByNameOfClientEmprunt("yan");
         for(Emprunt e : emprunts){
             System.out.println(e.getDate().getDayOfWeek());
         }
         System.out.println(library.findByNameOfClientEmprunt("yan"));
+        System.out.println(library.findByNameLibrary("book"));
     }
 }

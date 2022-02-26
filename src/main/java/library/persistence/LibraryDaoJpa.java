@@ -105,4 +105,9 @@ public class LibraryDaoJpa implements LibraryDao {
     public boolean isValidForExemplaire(String name) {
         return articleDao.isValidForExemplaire(name);
     }
+
+    @Override
+    public void deleteExemplaire(Exemplaire exemplaire) {
+        articleDao.deleteExemplaire(exemplaire);
+    }
 }

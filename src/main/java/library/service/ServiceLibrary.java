@@ -83,18 +83,19 @@ public class ServiceLibrary {
         List<Exemplaire> exemplaires = findByNameArticleExemplaires(nameArticle);
 
         Emprunt emprunt = new Emprunt();
-        for(Article e : exemplaires){
+        for(Exemplaire e : exemplaires){
             if(e.getTitle().equals(nameArticle)){
                 emprunt = Emprunt.builder()
                         .client(client)
                         .library(library)
-                        .articles(e)
+                        .exemplaire(e)
                         .date(date)
                         .build();
             }
         }
 
         libraryDao.saveEmprunt(emprunt);
+        libraryDao.deleteExemplaire(emprunt.getExemplaire());
     }
 
     public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {

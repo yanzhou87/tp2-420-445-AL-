@@ -82,4 +82,15 @@ public class ArticleDaoJpa implements ArticleDao {
        }
         return false;
     }
+
+    @Override
+    public void deleteExemplaire(Exemplaire exemplaire) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.remove(em.contains(exemplaire) ? exemplaire : em.merge(exemplaire));
+
+        em.getTransaction().commit();
+        em.close();
+    }
 }

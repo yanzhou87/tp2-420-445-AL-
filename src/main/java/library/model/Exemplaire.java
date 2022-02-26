@@ -13,8 +13,6 @@ import javax.persistence.*;
 //@EqualsAndHashCode(exclude = "article")
 public class Exemplaire extends Article{
 
-    private int nombres;
-
     @ManyToOne
     private Article article;
 

@@ -31,21 +31,8 @@ public abstract class Article{
     @ToString.Exclude
     private static List<Exemplaire> exemplaires = new ArrayList<>();
 
-    private static int nbExemplaires = 0 ;
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
-
-    public static int getNbExemplaires() {
-        return nbExemplaires;
-    }
-
-    public static void setNbExemplaires(int nbExemplaires) {
-        Article.nbExemplaires = nbExemplaires;
-    }
-
-    public void addNbExemplaires(){
-        nbExemplaires++;
-    }
 
 }

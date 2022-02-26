@@ -18,4 +18,5 @@ public interface ArticleDao {
 
     boolean isValidForExemplaire(String name);
 
+    void deleteExemplaire(Exemplaire exemplaire);
 }

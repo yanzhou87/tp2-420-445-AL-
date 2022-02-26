@@ -33,4 +33,6 @@ public interface LibraryDao {
     List<Emprunt> findByNameOfClientEmprunt(String userName);
 
     boolean isValidForExemplaire(String name);
+
+    void deleteExemplaire(Exemplaire exemplaire);
 }
