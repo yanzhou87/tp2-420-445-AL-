@@ -14,5 +14,8 @@ public interface ArticleDao {
 
     List<Article> findByIdArticle(long id);
 
-    List<Article> findByNameArticleExemplaires(String nameArticle);
+    List<Exemplaire> findByNameArticleExemplaires(String nameArticle);
+
+    boolean isValidForExemplaire(String name);
+
 }

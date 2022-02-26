@@ -13,10 +13,10 @@ import javax.persistence.*;
 //@EqualsAndHashCode(exclude = "article")
 public class Exemplaire extends Article{
 
-    private String title;
-//    @ManyToOne
-//    @JoinColumn(name = "ARTICLE_ID")
-//    private Article article;
+    private int nombres;
+
+    @ManyToOne
+    private Article article;
 
 
 }

@@ -1,9 +1,6 @@
 package library;
 
-import library.model.Article;
-import library.model.Client;
-import library.model.Library;
-import library.model.LibraryUser;
+import library.model.*;
 import library.persistence.LibraryDaoJpa;
 import library.service.ServiceLibrary;
 
@@ -25,13 +22,21 @@ public class MainLibrary {
         library.createBook("book1","author1","","");
         library.createBook("book2","","","");
 
-        library.createExemplairesOfBook("book", 5);
+        List<Article> articles1 = library.findByNameArticle("book");
+        library.createExemplairesOfBook(articles1, 5, "book");
+
+        System.out.println("//////////////   Find Exemplaires  ////////////////");
+        System.out.println(library.isValidForExemplaire("book"));
+
 
         List<Library> libraries = library.findByNameLibrary("biblioY");
         List<Article> articles = library.findByNameArticle("book");
+
         for(Library library1 : libraries){
             for(Article article : articles){
-                library.addBookInLibrary(article,library1);
+                if(article instanceof Book || article instanceof Exemplaire){
+                    library.addArticleInLibrary(article,library1);
+                }
             }
         }
 
@@ -54,6 +59,10 @@ public class MainLibrary {
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
         library.createEmprunt((Client) clients.get(0), libraryList.get(0), "book", date);
 
+        List<Emprunt> emprunts = library.findByNameOfClientEmprunt("yan");
+        for(Emprunt e : emprunts){
+            System.out.println(e.getDate().getDayOfWeek());
+        }
         System.out.println(library.findByNameOfClientEmprunt("yan"));
     }
 }

@@ -31,7 +31,7 @@ public class Library {
     @ToString.Exclude
     private static List<LibraryUser> users = new ArrayList<>();
 
-    public void addBook(Article article){
+    public void addArticle(Article article){
         articles.add(article);
     }
 

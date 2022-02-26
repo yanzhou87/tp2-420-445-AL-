@@ -51,26 +51,38 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public List<Article> findByNameArticleExemplaires(String nameArticle) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+    public List<Exemplaire> findByNameArticleExemplaires(String nameExemplaire) {
 
-        final TypedQuery<Article> query = em.createQuery("select a from Article a where title like :nameToSearch",Article.class);
+        final List<Article> articles = findByNameArticle(nameExemplaire);
 
-        query.setParameter("nameToSearch",nameArticle);
+        List<Exemplaire> exemplaireList = new ArrayList<>();
 
-        final List<Article> articles = query.getResultList();
+        for(Article a : articles){
+            if(a instanceof Exemplaire){
+                if(a.getTitle().equals(nameExemplaire)){
+                    exemplaireList.add((Exemplaire) a);
+                }
+            }
+        }
+        return exemplaireList;
+    }
 
-//        List<Exemplaire> exemplaireList = new ArrayList<>();
-//
-//        for(Article a : articles){
-//
-//            System.out.println("88888888888888   " +a);
-//           // exemplaireList.add(a);
-//            System.out.println("00000000000000000000000");
-//        }
+    @Override
+    public boolean isValidForExemplaire(String name) {
 
-        return articles;
+        final List<Article> articles = findByNameArticle(name);
+
+        List<Exemplaire> exemplaireList = new ArrayList<>();
+
+        for(Article a : articles){
+            if(a instanceof Exemplaire && a.getTitle().equals(name)){
+                if(((Exemplaire) a).getNombres() != 0){
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 

@@ -60,7 +60,7 @@ public class LibraryDaoJpa implements LibraryDao {
         em.getTransaction().begin();
 
         final TypedQuery<Library> query = em.createQuery("select l from Library l where name like :nameToSearch ",Library.class);
-        query.setParameter("nameToSearch", "%" + name + "%");
+        query.setParameter("nameToSearch", name );
 
         List<Library> libraries = query.getResultList();
 
@@ -86,12 +86,17 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public List<Article> findByNameArticleExemplaires(String nameArticle) {
+    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
         return articleDao.findByNameArticleExemplaires(nameArticle);
     }
 
     @Override
     public List<Emprunt> findByNameOfClientEmprunt(String userName) {
         return empruntDao.findByNameOfClientEmprunt(userName);
+    }
+
+    @Override
+    public boolean isValidForExemplaire(String name) {
+        return articleDao.isValidForExemplaire(name);
     }
 }
