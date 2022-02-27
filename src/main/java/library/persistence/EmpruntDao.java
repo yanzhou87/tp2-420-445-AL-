@@ -10,4 +10,6 @@ public interface EmpruntDao {
     List<Emprunt> findByNameOfClientEmprunt(String userName);
 
     void saveEmprunt(Emprunt emprunt);
+
+    void deleteEmprunt(Emprunt emprunt);
 }

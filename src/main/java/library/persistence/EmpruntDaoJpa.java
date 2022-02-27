@@ -35,4 +35,15 @@ public class EmpruntDaoJpa implements EmpruntDao {
        em.getTransaction().commit();
        em.close();
     }
+
+    @Override
+    public void deleteEmprunt(Emprunt emprunt) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.remove(emprunt);
+
+        em.getTransaction().commit();
+        em.close();
+    }
 }

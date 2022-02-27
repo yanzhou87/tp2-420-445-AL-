@@ -153,6 +153,11 @@ public class LibraryDaoJpa implements LibraryDao {
             }
         }
     }
+
+    private void deleteEmprunt(Emprunt emprunt) {
+        empruntDao.deleteEmprunt(emprunt);
+    }
+
     private void createAmende(Client client, long nbday) {
         Amende amende = new Amende();
         amende.setClient(client);
