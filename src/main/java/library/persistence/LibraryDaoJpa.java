@@ -153,5 +153,11 @@ public class LibraryDaoJpa implements LibraryDao {
             }
         }
     }
+    private void createAmende(Client client, long nbday) {
+        Amende amende = new Amende();
+        amende.setClient(client);
+        amende.setSommeAmende(nbday * amende.getAmendeForDay());
+        saveAmende(amende);
+    }
 
 }
