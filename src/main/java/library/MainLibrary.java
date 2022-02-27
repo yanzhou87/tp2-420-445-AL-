@@ -39,7 +39,7 @@ public class MainLibrary {
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
         System.out.println(library.findByNameArticle("book"));
-
+//////////////////////
         System.out.println("//////////////   Find Users   ////////////////");
         System.out.println(library.findByNameUser("yan"));
         System.out.println(library.findByNameUser("shasha"));
@@ -63,5 +63,7 @@ public class MainLibrary {
         }
         System.out.println(library.findByNameOfClientEmprunt("yan"));
         System.out.println(library.findByNameLibrary("book"));
+
+        library.returnEmprunts("yan", 2, "book");//返回一个借，要删除一个emprunt,增加一个exemplaire,如果是书期限超过3周就要创建一个amende
     }
 }

@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class LibraryDaoJpa implements LibraryDao {
@@ -109,5 +111,46 @@ public class LibraryDaoJpa implements LibraryDao {
     @Override
     public void deleteExemplaire(Exemplaire exemplaire) {
         articleDao.deleteExemplaire(exemplaire);
+    }
+
+    @Override
+    public void returnEmprunts(String firstName, long id, String articleName) {
+        List<Emprunt> emprunts = findByNameOfClientEmprunt(firstName);
+        for(Emprunt e : emprunts){
+            if(e.getClient().getId() == id){
+                if(e.getExemplaire().getTitle().equals(articleName)){
+                    if(e.getExemplaire().getArticle() instanceof Book){
+                        Duration duration = Duration.between(e.getDate(), LocalDateTime.now());
+                        long days = duration.toDays();
+                        if(days > 21){
+                            long nbday = days - 21;
+                            createAmende(e.getClient(),nbday);
+                        }
+                        deleteEmprunt(e);
+                        articleDao.save(e.getExemplaire());
+                    }
+                    if(e.getExemplaire().getArticle() instanceof CD){
+                        Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
+                        long days = duration.toDays();
+                        if(days > 14){
+                            long nbday = days - 14;
+                            createAmende(e.getClient(),nbday);
+                        }
+                        deleteEmprunt(e);
+                        articleDao.save(e.getExemplaire());
+                    }
+                    if(e.getExemplaire().getArticle() instanceof DVD){
+                        Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
+                        long days = duration.toDays();
+                        if(days > 7){
+                            long nbday = days - 7;
+                            createAmende(e.getClient(),nbday);
+                        }
+                        deleteEmprunt(e);
+                        articleDao.save(e.getExemplaire());
+                    }
+                }
+            }
+        }
     }
 }

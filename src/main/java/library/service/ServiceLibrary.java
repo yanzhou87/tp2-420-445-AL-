@@ -3,6 +3,7 @@ package library.service;
 import library.model.*;
 import library.persistence.LibraryDao;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -82,20 +83,22 @@ public class ServiceLibrary {
 
         List<Exemplaire> exemplaires = findByNameArticleExemplaires(nameArticle);
 
-        Emprunt emprunt = new Emprunt();
-        for(Exemplaire e : exemplaires){
-            if(e.getTitle().equals(nameArticle)){
-                emprunt = Emprunt.builder()
-                        .client(client)
-                        .library(library)
-                        .exemplaire(e)
-                        .date(date)
-                        .build();
+        if (!exemplaires.isEmpty()) {
+            Emprunt emprunt = new Emprunt();
+            for (Exemplaire e : exemplaires) {
+                if (e.getTitle().equals(nameArticle)) {
+                    emprunt = Emprunt.builder()
+                            .client(client)
+                            .library(library)
+                            .exemplaire(e)
+                            .date(date)
+                            .build();
+                }
             }
-        }
 
-        libraryDao.saveEmprunt(emprunt);
-        libraryDao.deleteExemplaire(emprunt.getExemplaire());
+            libraryDao.saveEmprunt(emprunt);
+          //  libraryDao.deleteExemplaire(emprunt.getExemplaire());
+        }
     }
 
     public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
@@ -109,6 +112,11 @@ public class ServiceLibrary {
 
     public boolean isValidForExemplaire(String name) {
         return libraryDao.isValidForExemplaire(name);
+    }
+
+    public void returnEmprunts(String firstName, long id,  String articleName) {
+        libraryDao.returnEmprunts(firstName,id,articleName);
+
     }
 }
 
