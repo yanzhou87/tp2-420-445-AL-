@@ -160,4 +160,13 @@ public class LibraryDaoJpa implements LibraryDao {
         saveAmende(amende);
     }
 
+    private void saveAmende(Amende amende) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.persist(amende);
+
+        em.getTransaction().commit();
+        em.close();
+    }
 }
