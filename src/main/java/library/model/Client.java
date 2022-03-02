@@ -3,6 +3,7 @@ package library.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,21 +17,14 @@ import java.util.List;
 @EqualsAndHashCode(exclude = "article")
 public class Client extends LibraryUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private long id;
 
     @OneToMany(mappedBy = "client",  fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Emprunt> emprunts;
 
-    public void borrow(){
-
-    }
-
-    public void returnArticle(){
-
-    }
-
-    public void toPay(){}
+    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
+    private List<Amende> amendes = new ArrayList<>();
 }

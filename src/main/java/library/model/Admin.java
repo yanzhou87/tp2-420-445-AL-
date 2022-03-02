@@ -1,20 +1,12 @@
 package library.model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 
 @DiscriminatorValue("admin")
 public class Admin extends LibraryUser {
-
-    public boolean isAvailable(){return false;}
-
-    public void addArticle(){}
-
-    public void deleteArticle(){}
-
-    public boolean isLate(){return  false;}
-
-    public void applyFee(){}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 }

@@ -1,6 +1,7 @@
 package library.model;
 
 import lombok.*;
+import org.h2.engine.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,4 +38,7 @@ public class Library {
         articles.add(article);
     }
 
+    public void addUser(LibraryUser user){
+        users.add(user);
+    }
 }

@@ -108,10 +108,6 @@ public class LibraryDaoJpa implements LibraryDao {
         return articleDao.isValidForExemplaire(name);
     }
 
-    @Override
-    public void deleteExemplaire(Exemplaire exemplaire) {
-        articleDao.deleteExemplaire(exemplaire);
-    }
 
     @Override
     public void returnEmprunts(String firstName, long id, String articleName) {
@@ -152,6 +148,12 @@ public class LibraryDaoJpa implements LibraryDao {
                 }
             }
         }
+    }
+
+    @Override
+    public void updatePossibleExemplaire(Exemplaire e) {
+        articleDao.updatePossibleExemplaire(e);
+
     }
 
     private void deleteEmprunt(Emprunt emprunt) {

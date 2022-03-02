@@ -41,7 +41,7 @@ public class EmpruntDaoJpa implements EmpruntDao {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        em.remove(emprunt);
+        em.remove(em.contains(emprunt) ? emprunt : em.merge(emprunt));
 
         em.getTransaction().commit();
         em.close();

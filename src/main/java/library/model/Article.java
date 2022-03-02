@@ -34,5 +34,4 @@ public abstract class Article{
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
-
 }

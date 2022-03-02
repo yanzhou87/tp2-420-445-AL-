@@ -15,6 +15,7 @@ public class Exemplaire extends Article{
 
     @ManyToOne
     private Article article;
+    private boolean possible = false;
 
 
 }

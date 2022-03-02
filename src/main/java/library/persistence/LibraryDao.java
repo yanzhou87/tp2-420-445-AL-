@@ -34,8 +34,8 @@ public interface LibraryDao {
 
     boolean isValidForExemplaire(String name);
 
-    void deleteExemplaire(Exemplaire exemplaire);
 
     void returnEmprunts(String firstName, long id, String articleName);
 
+    void updatePossibleExemplaire(Exemplaire e);
 }

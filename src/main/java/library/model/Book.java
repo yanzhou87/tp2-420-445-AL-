@@ -18,4 +18,5 @@ public class Book extends Article {
 
     private String editor;
     private int numbrePages;
+
 }

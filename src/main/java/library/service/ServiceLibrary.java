@@ -5,6 +5,7 @@ import library.persistence.LibraryDao;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceLibrary {
@@ -49,7 +50,9 @@ public class ServiceLibrary {
                         Exemplaire exemplaire = new Exemplaire();
                         exemplaire.setTitle(name);
                         exemplaire.setArticle(a);
+                        exemplaire.setPossible(true);
                         libraryDao.saveArticle(exemplaire);
+
                     }
                 }
             }
@@ -83,21 +86,23 @@ public class ServiceLibrary {
 
         List<Exemplaire> exemplaires = findByNameArticleExemplaires(nameArticle);
 
+        int nb = 1;
         if (!exemplaires.isEmpty()) {
-            Emprunt emprunt = new Emprunt();
-            for (Exemplaire e : exemplaires) {
-                if (e.getTitle().equals(nameArticle)) {
-                    emprunt = Emprunt.builder()
+            for(Exemplaire e : exemplaires) {
+                if (e.getTitle().equals(nameArticle) && e.isPossible()) {
+                    if(nb != 0){
+                    Emprunt emprunt = Emprunt.builder()
                             .client(client)
                             .library(library)
                             .exemplaire(e)
                             .date(date)
                             .build();
+                    libraryDao.updatePossibleExemplaire(e);
+                    libraryDao.saveEmprunt(emprunt);
+                    nb--;
+                    }
                 }
             }
-
-            libraryDao.saveEmprunt(emprunt);
-          //  libraryDao.deleteExemplaire(emprunt.getExemplaire());
         }
     }
 
