@@ -37,46 +37,35 @@ public class MainLibrary {
         System.out.println(library.findByNameArticleExemplaires("book"));
         System.out.println(library.isValidForExemplaire("book"));
 
-//        System.out.println("//////////////   Find Article  ////////////////");
-//        System.out.println(library.findByNameArticle("book1"));
-//        System.out.println(library.findByNameArticle("book"));
-////////////////////////
-//        System.out.println("//////////////   Find Users   ////////////////");
-//        System.out.println(library.findByNameUser("yan"));
-//        System.out.println(library.findByNameUser("shasha"));
-//
-//        System.out.println("//////////////   Find All Articles for title book  ////////////////");
-//        System.out.println(library.findByNameArticle("author"));
-//
-//        System.out.println("//////////////   Find All User for id 1 ////////////////");
+        System.out.println("//////////////   Find Article  ////////////////");
+        System.out.println(library.findByNameArticle("book1"));
+        System.out.println(library.findByNameArticle("book"));
+//////////////////////
+        System.out.println("//////////////   Find Users   ////////////////");
+        System.out.println(library.findByNameUser("yan"));
+        System.out.println(library.findByNameUser("shasha"));
+
+        System.out.println("//////////////   Find All Articles for title book  ////////////////");
+        System.out.println(library.findByNameArticle("author"));
+
+        System.out.println("//////////////   Find All User for id 1 ////////////////");
         LibraryUser client = library.findByIdUser(2L);
-//        System.out.println(client);
-//
-//
-//        System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
-//
+        System.out.println(client);
+
+        System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
         LocalDateTime date = LocalDateTime.now();
         library.createEmprunt((Client) client, librarie, "book", date);
-        System.out.println(library.findByNameArticleExemplaires("book"));
         System.out.println(library.findByNameOfClientEmprunt(client.getFirstName()));
-        System.out.println(library.findByNameArticleExemplaires("book"));
-//        List<Article> articles2 = library.findByNameArticle("book");
-//        List<Book> books = new ArrayList<>();
-//        for(Article a : articles2){
-//            if(a instanceof Book){
-//                if(a.getTitle().equals("book")){
-//                    System.out.println();
-//                }
-//            }
-//        }
-//
-//        List<Emprunt> emprunts = library.findByNameOfClientEmprunt("yan");
-//        for(Emprunt e : emprunts){
-//            System.out.println(e.getDate().getDayOfWeek());
-//        }
-//        System.out.println(library.findByNameOfClientEmprunt("yan"));
-//        System.out.println(library.findByNameArticle("book"));
 
-      //  library.returnEmprunts("yan", 2, "book");//返回一个借，要删除一个emprunt,增加一个exemplaire,如果是书期限超过3周就要创建一个amende
+        System.out.println("//////////////   un exemplaire is emprunt  ////////////////");
+        System.out.println(library.findByNameArticleExemplaires("book"));
+
+        System.out.println("//////////////   return emprunt  ////////////////");
+        library.returnEmprunts(client.getFirstName(), client.getId(), "book");
+        System.out.println(library.findByNameOfClientEmprunt(client.getFirstName()));
+
+        System.out.println("//////////////   return emprunt and resultat for exemplaires ////////////////");
+        System.out.println(library.findByNameArticleExemplaires("book"));
+
     }
 }

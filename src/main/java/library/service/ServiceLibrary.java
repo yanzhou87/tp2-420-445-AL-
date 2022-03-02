@@ -89,7 +89,7 @@ public class ServiceLibrary {
         int nb = 1;
         if (!exemplaires.isEmpty()) {
             for(Exemplaire e : exemplaires) {
-                if (e.getTitle().equals(nameArticle) && e.isPossible()) {
+                if (e.getArticle().getTitle().equals(nameArticle) && e.isPossible()) {
                     if(nb != 0){
                     Emprunt emprunt = Emprunt.builder()
                             .client(client)

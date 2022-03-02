@@ -114,7 +114,7 @@ public class LibraryDaoJpa implements LibraryDao {
         List<Emprunt> emprunts = findByNameOfClientEmprunt(firstName);
         for(Emprunt e : emprunts){
             if(e.getClient().getId() == id){
-                if(e.getExemplaire().getTitle().equals(articleName)){
+                if(e.getExemplaire().getArticle().getTitle().equals(articleName)){
                     if(e.getExemplaire().getArticle() instanceof Book){
                         Duration duration = Duration.between(e.getDate(), LocalDateTime.now());
                         long days = duration.toDays();
@@ -122,8 +122,8 @@ public class LibraryDaoJpa implements LibraryDao {
                             long nbday = days - 21;
                             createAmende(e.getClient(),nbday);
                         }
-                        deleteEmprunt(e);
-                        articleDao.save(e.getExemplaire());
+                        updateEmprunt(e);
+                        articleDao.updatePossibleExemplaire(e.getExemplaire());
                     }
                     if(e.getExemplaire().getArticle() instanceof CD){
                         Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
@@ -132,8 +132,8 @@ public class LibraryDaoJpa implements LibraryDao {
                             long nbday = days - 14;
                             createAmende(e.getClient(),nbday);
                         }
-                        deleteEmprunt(e);
-                        articleDao.save(e.getExemplaire());
+                        updateEmprunt(e);
+                        articleDao.updatePossibleExemplaire(e.getExemplaire());
                     }
                     if(e.getExemplaire().getArticle() instanceof DVD){
                         Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
@@ -142,8 +142,8 @@ public class LibraryDaoJpa implements LibraryDao {
                             long nbday = days - 7;
                             createAmende(e.getClient(),nbday);
                         }
-                        deleteEmprunt(e);
-                        articleDao.save(e.getExemplaire());
+                        updateEmprunt(e);
+                        articleDao.updatePossibleExemplaire(e.getExemplaire());
                     }
                 }
             }
@@ -156,8 +156,8 @@ public class LibraryDaoJpa implements LibraryDao {
 
     }
 
-    private void deleteEmprunt(Emprunt emprunt) {
-        empruntDao.deleteEmprunt(emprunt);
+    private void updateEmprunt(Emprunt emprunt) {
+        empruntDao.updateEmprunt(emprunt);
     }
 
     private void createAmende(Client client, long nbday) {

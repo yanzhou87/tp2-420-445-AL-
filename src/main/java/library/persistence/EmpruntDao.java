@@ -11,5 +11,5 @@ public interface EmpruntDao {
 
     void saveEmprunt(Emprunt emprunt);
 
-    void deleteEmprunt(Emprunt emprunt);
+    void updateEmprunt(Emprunt emprunt);
 }

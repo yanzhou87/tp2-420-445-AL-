@@ -89,7 +89,8 @@ public class ArticleDaoJpa implements ArticleDao {
         em.getTransaction().begin();
 
         Exemplaire exemplaire = em.find(Exemplaire.class, e.getId());
-        exemplaire.setPossible(false);
+
+        exemplaire.setPossible(!exemplaire.isPossible());
         em.merge(exemplaire);
 
         em.getTransaction().commit();

@@ -28,6 +28,7 @@ public class Emprunt {
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
     private LocalDateTime date;
+    private boolean isReturn = false;
 
 
 }

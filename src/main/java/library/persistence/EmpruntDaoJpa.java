@@ -1,6 +1,7 @@
 package library.persistence;
 
 import library.model.Emprunt;
+import library.model.Exemplaire;
 import library.model.LibraryUser;
 
 import javax.persistence.EntityManager;
@@ -37,11 +38,17 @@ public class EmpruntDaoJpa implements EmpruntDao {
     }
 
     @Override
-    public void deleteEmprunt(Emprunt emprunt) {
+    public void updateEmprunt(Emprunt emprunt) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        em.remove(em.contains(emprunt) ? emprunt : em.merge(emprunt));
+        Emprunt emprunt1 = em.find(Emprunt.class, emprunt.getId());
+//        Exemplaire exemplaire = emprunt1.getExemplaire();
+//        exemplaire.setPossible(!emprunt1.getExemplaire().isPossible());
+        emprunt1.setReturn(!emprunt1.isReturn());
+
+       // em.merge(exemplaire);
+        em.merge(emprunt1);
 
         em.getTransaction().commit();
         em.close();
