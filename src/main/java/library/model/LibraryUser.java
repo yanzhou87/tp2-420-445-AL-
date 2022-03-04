@@ -18,7 +18,7 @@ import javax.persistence.*;
 public abstract class LibraryUser {
 
     @Id
-    @GeneratedValue(generator = "ln_seq")
+    @GeneratedValue(generator = "libraryUser_seq")
     private long id;
 
     private String firstName;

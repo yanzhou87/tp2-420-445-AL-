@@ -7,7 +7,7 @@ import java.util.List;
 public interface EmpruntDao {
 
 
-    List<Emprunt> findByNameOfClientEmprunt(String userName);
+    List<Emprunt> findByNameOfClientEmprunt(long userId);
 
     void saveEmprunt(Emprunt emprunt);
 

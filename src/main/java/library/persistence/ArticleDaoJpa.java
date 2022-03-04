@@ -55,47 +55,60 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public List<ExemplaireBook> findByNameArticleExemplaires(String nameExemplaire) {
-
-        final List<Article> articles = findByNameArticle(nameExemplaire);
-
-        List<ExemplaireBook> exemplaireList = new ArrayList<>();
-
-        for(Article a : articles){
-            if(a instanceof ExemplaireBook){
-                if(a.getTitle().equals(nameExemplaire)){
-                    exemplaireList.add((ExemplaireBook) a);
-                }
-            }
-        }
-
-        return exemplaireList;
-    }
-
-    @Override
-    public boolean isValidForExemplaire(String name) {
-
-        List<ExemplaireBook> exemplaires = findByNameArticleExemplaires(name);
-
-       if(!exemplaires.isEmpty()){
-           return true;
-       }
-        return false;
-    }
-
-    @Override
-    public void updatePossibleExemplaire(ExemplaireBook e) {
+    public void updateIsBorrowde(Article article) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        Article article1 = em.find(Article.class, article.getId());
 
-        ExemplaireBook exemplaire = em.find(ExemplaireBook.class, e.getId());
-
-        exemplaire.setIsEmprunt(!exemplaire.isIsEmprunt());
-        em.merge(exemplaire);
+        article1.setBorrowed(!article1.isBorrowed());
+        em.merge(article1);
 
         em.getTransaction().commit();
         em.close();
+
     }
+
+//    @Override
+//    public List<ExemplaireBook> findByNameExemplaires(String nameExemplaire) {
+//
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//
+//        final TypedQuery<Exemplaire> query = em.createQuery("select e from Exemplaire e where id = id",Exemplaire.class);
+//
+//        final List<Exemplaire> exemplaires = query.getResultList();
+//
+//
+//        em.getTransaction().commit();
+//        em.close();
+//
+//        return exemplaireList;
+//    }
+
+//    @Override
+//    public boolean isValidForExemplaire(String name) {
+//
+//        List<ExemplaireBook> exemplaires = findByNameExemplaires(name);
+//
+//       if(!exemplaires.isEmpty()){
+//           return true;
+//       }
+//        return false;
+//    }
+
+//    @Override
+//    public void updatePossibleExemplaire(ExemplaireBook e) {
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//
+//        ExemplaireBook exemplaire = em.find(ExemplaireBook.class, e.getId());
+//
+//        exemplaire.setIsEmprunt(!exemplaire.isIsEmprunt());
+//        em.merge(exemplaire);
+//
+//        em.getTransaction().commit();
+//        em.close();
+//    }
 
 
 }

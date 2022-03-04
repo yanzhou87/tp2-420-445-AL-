@@ -30,11 +30,7 @@ public class MainLibrary {
             }
 
         List<Article> articles1 = library.findByNameArticle("book");
-        library.createExemplairesOfBook(articles1, 5, "book");
-
-        System.out.println("//////////////   Find Exemplaires  ////////////////");
-        System.out.println(library.findByNameArticleExemplaires("book"));
-        System.out.println(library.isValidForExemplaire("book"));
+      //  library.createExemplairesOfBook(articles1, 5, "book");
 
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
@@ -52,17 +48,17 @@ public class MainLibrary {
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
         LocalDateTime date = LocalDateTime.now();
         library.createEmprunt((Client) client, librarie, "book", date);
-        System.out.println(library.findByNameOfClientEmprunt(client.getFirstName()));
+        System.out.println(library.findByNameOfClientEmprunt(client.getId()));
 
-        System.out.println("//////////////   un exemplaire is emprunt  ////////////////");
-        System.out.println(library.findByNameArticleExemplaires("book"));
+      //  System.out.println("//////////////   un exemplaire is emprunt  ////////////////");
+      //  System.out.println(library.findByNameArticleExemplaires("book"));
 
         System.out.println("//////////////   return emprunt  ////////////////");
         library.returnEmprunts(client.getFirstName(), client.getId(), "book");
-        System.out.println(library.findByNameOfClientEmprunt(client.getFirstName()));
+        System.out.println(library.findByNameOfClientEmprunt(client.getId()));
 
-        System.out.println("//////////////   return emprunt and resultat for exemplaires ////////////////");
-        System.out.println(library.findByNameArticleExemplaires("book"));
+     //   System.out.println("//////////////   return emprunt and resultat for exemplaires ////////////////");
+    //    System.out.println(library.findByNameArticleExemplaires("book"));
 
     }
 }

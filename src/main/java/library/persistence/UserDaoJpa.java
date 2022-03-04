@@ -50,15 +50,10 @@ public class UserDaoJpa implements UserDao {
         em.close();
 
         for(LibraryUser user : users){
-            System.out.println("====================  =================================" + user.getId() );
-            System.out.println("====================  =================================" + (user.getId() == id ));
-
             if(user.getId() == id){
-
                return user;
             }
         }
-
         return null;
     }
 }

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "EMPRUNT")
 public class Emprunt {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "emprunt_seq")
     private long id;
 
     @ManyToOne
@@ -22,7 +22,7 @@ public class Emprunt {
 
     @OneToOne
     @JoinColumn(name = "ARTICLE_ID")
-    private ExemplaireBook exemplaire;
+    private Article article;
 
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")

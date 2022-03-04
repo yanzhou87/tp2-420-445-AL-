@@ -40,17 +40,17 @@ public class ServiceLibrary {
         return libraryDao.findByNameArticle(title);
     }
 
-    public void createExemplairesOfBook(List<Article> articles, int nb, String name) {
-        for(Article a : articles){
-                if(a.getTitle().equals(name)){
-                    for(int i = 0 ; i < nb; i++){
-                        ExemplaireBook exemplaireBook = new ExemplaireBook();
-                        exemplaireBook.setBook((Book) a);
-                        libraryDao.saveExemplaire(exemplaireBook);
-                }
-            }
-        }
-    }
+//    public void createExemplairesOfBook(List<Article> articles, int nb, String name) {
+//        for(Article a : articles){
+//                if(a.getTitle().equals(name)){
+//                    for(int i = 0 ; i < nb; i++){
+//                        ExemplaireBook exemplaireBook = new ExemplaireBook();
+//                        exemplaireBook.setBook((Book) a);
+//                        libraryDao.saveExemplaire(exemplaireBook);
+//                }
+//            }
+//        }
+//    }
 
     public void createLibrary(String name) {
         Library library = Library.builder()
@@ -77,40 +77,41 @@ public class ServiceLibrary {
 
     public void createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
 
-        List<ExemplaireBook> exemplaires = findByNameArticleExemplaires(nameArticle);
+        List<Article> articles = findByNameArticle(nameArticle);
 
-        int nb = 1;
-        if (!exemplaires.isEmpty()) {
-            for(ExemplaireBook e : exemplaires) {
-                if (e.getArticle().getTitle().equals(nameArticle) && e.isIsEmprunt()) {
-                    if(nb != 0){
+      //  int nb = 1;
+
+            for(Article article : articles) {
+                if (article.getTitle().equals(nameArticle) && !article.isBorrowed()) {
+            //        if(nb != 0){
                     Emprunt emprunt = Emprunt.builder()
                             .client(client)
                             .library(library)
-                            .exemplaire(e)
+                            .article(article)
                             .date(date)
                             .build();
-                    libraryDao.updatePossibleExemplaire(e);
+                    libraryDao.updateIsBorrowde(article);
                     libraryDao.saveEmprunt(emprunt);
-                    nb--;
+            //        nb--;
                     }
+
                 }
             }
-        }
-    }
-
-    public List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle) {
-        return libraryDao.findByNameArticleExemplaires(nameArticle);
-    }
-
-    public List<Emprunt> findByNameOfClientEmprunt(String userName) {
-        return libraryDao.findByNameOfClientEmprunt(userName);
-    }
+     //   }
 
 
-    public boolean isValidForExemplaire(String name) {
-        return libraryDao.isValidForExemplaire(name);
+//    public List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle) {
+//        return libraryDao.findByNameArticleExemplaires(nameArticle);
+//    }
+
+    public List<Emprunt> findByNameOfClientEmprunt(long userId) {
+        return libraryDao.findByNameOfClientEmprunt(userId);
     }
+
+
+//    public boolean isValidForExemplaire(String name) {
+//        return libraryDao.isValidForExemplaire(name);
+//    }
 
     public void returnEmprunts(String firstName, long id,  String articleName) {
         libraryDao.returnEmprunts(firstName,id,articleName);

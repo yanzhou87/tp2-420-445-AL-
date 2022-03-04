@@ -5,8 +5,6 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -21,17 +19,15 @@ public abstract class Article{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "LIBRARY_ID")
+    private Library library;
+
     private String title;
     private String author;
     private String yearPublication;
     private String typeArticle;
+    private boolean isBorrowed = false;
 
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
-    @ToString.Exclude
-    private static List<ExemplaireBook> exemplaires = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "LIBRARY_ID")
-    private Library library;
 }

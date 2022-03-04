@@ -94,78 +94,52 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle) {
-        return articleDao.findByNameArticleExemplaires(nameArticle);
+    public List<Emprunt> findByNameOfClientEmprunt(long userId) {
+        return empruntDao.findByNameOfClientEmprunt(userId);
     }
 
     @Override
-    public List<Emprunt> findByNameOfClientEmprunt(String userName) {
-        return empruntDao.findByNameOfClientEmprunt(userName);
-    }
-
-    @Override
-    public boolean isValidForExemplaire(String name) {
-        return articleDao.isValidForExemplaire(name);
-    }
-
-
-    @Override
-    public void returnEmprunts(String firstName, long id, String articleName) {
-        List<Emprunt> emprunts = findByNameOfClientEmprunt(firstName);
+    public void returnEmprunts(String firstName, long userId, String articleName) {
+        List<Emprunt> emprunts = findByNameOfClientEmprunt(userId);
         for(Emprunt e : emprunts){
-            if(e.getClient().getId() == id){
-                if(e.getExemplaire().getArticle().getTitle().equals(articleName)){
-                    if(e.getExemplaire().getArticle() instanceof Book){
+            if(e.getClient().getId() == userId){
+                if(e.getArticle().getTitle().equals(articleName)){
+                    if(e.getArticle() instanceof Book){
                         Duration duration = Duration.between(e.getDate(), LocalDateTime.now());
                         long days = duration.toDays();
                         if(days > 21){
                             long nbday = days - 21;
                             createAmende(e.getClient(),nbday);
                         }
-                        updateEmprunt(e);
-                        articleDao.updatePossibleExemplaire(e.getExemplaire());
                     }
-                    if(e.getExemplaire().getArticle() instanceof CD){
+                    if(e.getArticle() instanceof CD){
                         Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
                         long days = duration.toDays();
                         if(days > 14){
                             long nbday = days - 14;
                             createAmende(e.getClient(),nbday);
                         }
-                        updateEmprunt(e);
-                        articleDao.updatePossibleExemplaire(e.getExemplaire());
                     }
-                    if(e.getExemplaire().getArticle() instanceof DVD){
+                    if(e.getArticle() instanceof DVD){
                         Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
                         long days = duration.toDays();
                         if(days > 7){
                             long nbday = days - 7;
                             createAmende(e.getClient(),nbday);
                         }
-                        updateEmprunt(e);
-                        articleDao.updatePossibleExemplaire(e.getExemplaire());
                     }
+                    updateEmprunt(e);
+                    articleDao.updateIsBorrowde(e.getArticle());
                 }
             }
-        }
+      }
     }
 
     @Override
-    public void updatePossibleExemplaire(ExemplaireBook e) {
-        articleDao.updatePossibleExemplaire(e);
-
+    public void updateIsBorrowde(Article article) {
+        articleDao.updateIsBorrowde(article);
     }
 
-    @Override
-    public void saveExemplaire(ExemplaireBook exemplaireBook) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        em.persist(exemplaireBook);
-
-        em.getTransaction().commit();
-        em.close();
-    }
 
     private void updateEmprunt(Emprunt emprunt) {
         empruntDao.updateEmprunt(emprunt);

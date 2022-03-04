@@ -12,12 +12,12 @@ public class EmpruntDaoJpa implements EmpruntDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
     UserDao userDao = new UserDaoJpa();
     @Override
-    public List<Emprunt> findByNameOfClientEmprunt(String userName) {
+    public List<Emprunt> findByNameOfClientEmprunt(long userId) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        TypedQuery<Emprunt> query = em.createQuery("select e from Emprunt e where client.firstName like :userNameToSearch",Emprunt.class);
-        query.setParameter("userNameToSearch", userName);
+        TypedQuery<Emprunt> query = em.createQuery("select e from Emprunt e where client.id = :userIdToSearch",Emprunt.class);
+        query.setParameter("userIdToSearch", userId);
 
         List<Emprunt> emprunts = query.getResultList();
 
@@ -41,11 +41,9 @@ public class EmpruntDaoJpa implements EmpruntDao {
         em.getTransaction().begin();
 
         Emprunt emprunt1 = em.find(Emprunt.class, emprunt.getId());
-//        Exemplaire exemplaire = emprunt1.getExemplaire();
-//        exemplaire.setPossible(!emprunt1.getExemplaire().isPossible());
+
         emprunt1.setReturn(!emprunt1.isReturn());
 
-       // em.merge(exemplaire);
         em.merge(emprunt1);
 
         em.getTransaction().commit();
