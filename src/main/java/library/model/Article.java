@@ -16,7 +16,6 @@ import java.util.List;
 @Table(name = "ARTICLE")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Article_type", discriminatorType = DiscriminatorType.STRING)
-//@EqualsAndHashCode(exclude = "library")
 public abstract class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,9 +26,10 @@ public abstract class Article{
     private String yearPublication;
     private String typeArticle;
 
+
     @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
     @ToString.Exclude
-    private static List<Exemplaire> exemplaires = new ArrayList<>();
+    private static List<ExemplaireBook> exemplaires = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")

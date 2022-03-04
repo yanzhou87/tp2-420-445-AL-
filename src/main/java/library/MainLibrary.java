@@ -17,7 +17,6 @@ public class MainLibrary {
         System.out.println(library.findByNameLibrary("biblioY"));
 
         library.createClient("yan", "zhou", 33);
-        library.createClient("shasha", "SS", 90);
 
         library.createBook("book","author", "2020-11-01","roman");
         library.createBook("book1","author1","","");
@@ -40,16 +39,14 @@ public class MainLibrary {
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
         System.out.println(library.findByNameArticle("book"));
+        System.out.println("//////////////   Find All Articles for author   ////////////////");
+        System.out.println(library.findByNameArticle("author"));
 //////////////////////
         System.out.println("//////////////   Find Users   ////////////////");
         System.out.println(library.findByNameUser("yan"));
-        System.out.println(library.findByNameUser("shasha"));
-
-        System.out.println("//////////////   Find All Articles for title book  ////////////////");
-        System.out.println(library.findByNameArticle("author"));
 
         System.out.println("//////////////   Find All User for id 1 ////////////////");
-        LibraryUser client = library.findByIdUser(2L);
+        LibraryUser client = library.findByIdUser(1L);
         System.out.println(client);
 
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");

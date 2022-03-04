@@ -1,8 +1,6 @@
 package library.persistence;
 
 import library.model.Emprunt;
-import library.model.Exemplaire;
-import library.model.LibraryUser;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

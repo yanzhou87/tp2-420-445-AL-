@@ -55,16 +55,16 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public List<Exemplaire> findByNameArticleExemplaires(String nameExemplaire) {
+    public List<ExemplaireBook> findByNameArticleExemplaires(String nameExemplaire) {
 
         final List<Article> articles = findByNameArticle(nameExemplaire);
 
-        List<Exemplaire> exemplaireList = new ArrayList<>();
+        List<ExemplaireBook> exemplaireList = new ArrayList<>();
 
         for(Article a : articles){
-            if(a instanceof Exemplaire){
+            if(a instanceof ExemplaireBook){
                 if(a.getTitle().equals(nameExemplaire)){
-                    exemplaireList.add((Exemplaire) a);
+                    exemplaireList.add((ExemplaireBook) a);
                 }
             }
         }
@@ -75,7 +75,7 @@ public class ArticleDaoJpa implements ArticleDao {
     @Override
     public boolean isValidForExemplaire(String name) {
 
-        List<Exemplaire> exemplaires = findByNameArticleExemplaires(name);
+        List<ExemplaireBook> exemplaires = findByNameArticleExemplaires(name);
 
        if(!exemplaires.isEmpty()){
            return true;
@@ -84,13 +84,13 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public void updatePossibleExemplaire(Exemplaire e) {
+    public void updatePossibleExemplaire(ExemplaireBook e) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        Exemplaire exemplaire = em.find(Exemplaire.class, e.getId());
+        ExemplaireBook exemplaire = em.find(ExemplaireBook.class, e.getId());
 
-        exemplaire.setPossible(!exemplaire.isPossible());
+        exemplaire.setIsEmprunt(!exemplaire.isIsEmprunt());
         em.merge(exemplaire);
 
         em.getTransaction().commit();

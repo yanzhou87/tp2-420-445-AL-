@@ -22,7 +22,7 @@ public class Emprunt {
 
     @OneToOne
     @JoinColumn(name = "ARTICLE_ID")
-    private Exemplaire exemplaire;
+    private ExemplaireBook exemplaire;
 
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")

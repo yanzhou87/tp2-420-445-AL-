@@ -17,10 +17,6 @@ import java.util.List;
 @EqualsAndHashCode(exclude = "article")
 public class Client extends LibraryUser {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private long id;
-
     @OneToMany(mappedBy = "client",  fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Emprunt> emprunts;

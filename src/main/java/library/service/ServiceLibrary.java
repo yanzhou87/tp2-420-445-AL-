@@ -3,9 +3,7 @@ package library.service;
 import library.model.*;
 import library.persistence.LibraryDao;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceLibrary {
@@ -44,16 +42,11 @@ public class ServiceLibrary {
 
     public void createExemplairesOfBook(List<Article> articles, int nb, String name) {
         for(Article a : articles){
-            if(a instanceof Book){
                 if(a.getTitle().equals(name)){
                     for(int i = 0 ; i < nb; i++){
-                        Exemplaire exemplaire = new Exemplaire();
-                        exemplaire.setTitle(name);
-                        exemplaire.setArticle(a);
-                        exemplaire.setPossible(true);
-                        libraryDao.saveArticle(exemplaire);
-
-                    }
+                        ExemplaireBook exemplaireBook = new ExemplaireBook();
+                        exemplaireBook.setBook((Book) a);
+                        libraryDao.saveExemplaire(exemplaireBook);
                 }
             }
         }
@@ -84,12 +77,12 @@ public class ServiceLibrary {
 
     public void createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
 
-        List<Exemplaire> exemplaires = findByNameArticleExemplaires(nameArticle);
+        List<ExemplaireBook> exemplaires = findByNameArticleExemplaires(nameArticle);
 
         int nb = 1;
         if (!exemplaires.isEmpty()) {
-            for(Exemplaire e : exemplaires) {
-                if (e.getArticle().getTitle().equals(nameArticle) && e.isPossible()) {
+            for(ExemplaireBook e : exemplaires) {
+                if (e.getArticle().getTitle().equals(nameArticle) && e.isIsEmprunt()) {
                     if(nb != 0){
                     Emprunt emprunt = Emprunt.builder()
                             .client(client)
@@ -106,7 +99,7 @@ public class ServiceLibrary {
         }
     }
 
-    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+    public List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle) {
         return libraryDao.findByNameArticleExemplaires(nameArticle);
     }
 

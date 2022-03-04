@@ -94,7 +94,7 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public List<Exemplaire> findByNameArticleExemplaires(String nameArticle) {
+    public List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle) {
         return articleDao.findByNameArticleExemplaires(nameArticle);
     }
 
@@ -151,9 +151,20 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public void updatePossibleExemplaire(Exemplaire e) {
+    public void updatePossibleExemplaire(ExemplaireBook e) {
         articleDao.updatePossibleExemplaire(e);
 
+    }
+
+    @Override
+    public void saveExemplaire(ExemplaireBook exemplaireBook) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.persist(exemplaireBook);
+
+        em.getTransaction().commit();
+        em.close();
     }
 
     private void updateEmprunt(Emprunt emprunt) {

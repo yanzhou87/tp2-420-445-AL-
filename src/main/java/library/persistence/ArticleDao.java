@@ -1,8 +1,7 @@
 package library.persistence;
 
 import library.model.Article;
-import library.model.Book;
-import library.model.Exemplaire;
+import library.model.ExemplaireBook;
 
 import java.util.List;
 
@@ -14,9 +13,9 @@ public interface ArticleDao {
 
     List<Article> findByIdArticle(long id);
 
-    List<Exemplaire> findByNameArticleExemplaires(String nameArticle);
+    List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle);
 
     boolean isValidForExemplaire(String name);
 
-    void updatePossibleExemplaire(Exemplaire e);
+    void updatePossibleExemplaire(ExemplaireBook e);
 }
