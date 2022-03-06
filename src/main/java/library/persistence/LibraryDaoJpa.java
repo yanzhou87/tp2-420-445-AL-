@@ -14,6 +14,7 @@ public class LibraryDaoJpa implements LibraryDao {
     private UserDao userDao = new UserDaoJpa();
     private ArticleDao articleDao = new ArticleDaoJpa();
     private EmpruntDao empruntDao = new EmpruntDaoJpa();
+    private AmendeDao amendeDao = new AmendeDaoJpa();
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
     @Override
     public void saveArticle(Article article) {
@@ -149,16 +150,7 @@ public class LibraryDaoJpa implements LibraryDao {
         Amende amende = new Amende();
         amende.setClient(client);
         amende.setSommeAmende(nbday * amende.getAmendeForDay());
-        saveAmende(amende);
+        amendeDao.saveAmende(amendeDao);
     }
 
-    private void saveAmende(Amende amende) {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        em.persist(amende);
-
-        em.getTransaction().commit();
-        em.close();
-    }
 }

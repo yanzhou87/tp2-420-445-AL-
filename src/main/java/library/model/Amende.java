@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Amende {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue( generator = "amande_seq")
     private long id;
     @ManyToOne
     @JoinColumn(name = "client_id")

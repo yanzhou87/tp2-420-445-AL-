@@ -30,14 +30,13 @@ public class MainLibrary {
             }
 
         List<Article> articles1 = library.findByNameArticle("book");
-      //  library.createExemplairesOfBook(articles1, 5, "book");
 
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
         System.out.println(library.findByNameArticle("book"));
         System.out.println("//////////////   Find All Articles for author   ////////////////");
         System.out.println(library.findByNameArticle("author"));
-//////////////////////
+
         System.out.println("//////////////   Find Users   ////////////////");
         System.out.println(library.findByNameUser("yan"));
 

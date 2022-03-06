@@ -16,7 +16,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "Article_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Article{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "article_seq")
     private long id;
 
     @ManyToOne
