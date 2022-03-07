@@ -17,17 +17,17 @@ import javax.persistence.*;
 public abstract class Article{
     @Id
     @GeneratedValue(generator = "article_seq")
-    private long id;
+    protected long id;
 
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")
     private Library library;
 
-    private String title;
-    private String author;
-    private String yearPublication;
-    private String typeArticle;
-    private boolean isBorrowed = false;
+    protected String title;
+    protected String author;
+    protected String yearPublication;
+    protected String typeArticle;
+    protected boolean isBorrowed = false;
 
 
 }

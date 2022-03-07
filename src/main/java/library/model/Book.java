@@ -19,4 +19,17 @@ public class Book extends Article {
     private String editor;
     private int numbrePages;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublication='" + yearPublication + '\'' +
+                ", typeArticle='" + typeArticle + '\'' +
+                ", isBorrowed=" + isBorrowed +
+                ", editor='" + editor + '\'' +
+                ", numbrePages=" + numbrePages +
+                '}';
+    }
 }

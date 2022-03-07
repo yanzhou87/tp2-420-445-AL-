@@ -14,9 +14,4 @@ public interface ArticleDao {
 
     void updateIsBorrowde(Article article);
 
-//    List<ExemplaireBook> findByNameExemplaires(String nameArticle);
-//
-//    boolean isValidForExemplaire(String name);
-//
-//    void updatePossibleExemplaire(ExemplaireBook e);
 }

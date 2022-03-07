@@ -5,7 +5,6 @@ import library.persistence.LibraryDaoJpa;
 import library.service.ServiceLibrary;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainLibrary {
@@ -29,8 +28,6 @@ public class MainLibrary {
                     library.addArticleInLibrary(article,librarie);
             }
 
-        List<Article> articles1 = library.findByNameArticle("book");
-
         System.out.println("//////////////   Find Article  ////////////////");
         System.out.println(library.findByNameArticle("book1"));
         System.out.println(library.findByNameArticle("book"));
@@ -49,15 +46,13 @@ public class MainLibrary {
         library.createEmprunt((Client) client, librarie, "book", date);
         System.out.println(library.findByNameOfClientEmprunt(client.getId()));
 
-      //  System.out.println("//////////////   un exemplaire is emprunt  ////////////////");
-      //  System.out.println(library.findByNameArticleExemplaires("book"));
+        System.out.println("//////////////   After borrowing  ////////////////");
+        System.out.println(library.findByNameArticle("book"));
 
         System.out.println("//////////////   return emprunt  ////////////////");
         library.returnEmprunts(client.getFirstName(), client.getId(), "book");
         System.out.println(library.findByNameOfClientEmprunt(client.getId()));
 
-     //   System.out.println("//////////////   return emprunt and resultat for exemplaires ////////////////");
-    //    System.out.println(library.findByNameArticleExemplaires("book"));
 
     }
 }

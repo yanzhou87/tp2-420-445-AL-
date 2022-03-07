@@ -28,18 +28,10 @@ public interface LibraryDao {
 
     void saveEmprunt(Emprunt emprunt);
 
-//    List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle);
-
     List<Emprunt> findByNameOfClientEmprunt(long userId);
-
- //   boolean isValidForExemplaire(String name);
-
 
     void returnEmprunts(String firstName, long id, String articleName);
 
     void updateIsBorrowde(Article article);
 
-//    void updatePossibleExemplaire(ExemplaireBook e);
-//
-//    void saveExemplaire(ExemplaireBook exemplaireBook);
 }

@@ -12,9 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue("client")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "LibraryUser_type", discriminatorType = DiscriminatorType.STRING)
-@EqualsAndHashCode(exclude = "article")
+
 public class Client extends LibraryUser {
 
     @OneToMany(mappedBy = "client",  fetch = FetchType.LAZY)
@@ -23,4 +21,17 @@ public class Client extends LibraryUser {
 
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
     private List<Amende> amendes = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", library=" + library +
+                "， amendes=" + amendes +
+                '}';
+    }
 }

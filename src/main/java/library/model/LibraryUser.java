@@ -19,15 +19,15 @@ public abstract class LibraryUser {
 
     @Id
     @GeneratedValue(generator = "libraryUser_seq")
-    private long id;
+    protected long id;
 
-    private String firstName;
-    private String lastName;
-    private int age;
-    private String address;
+    protected String firstName;
+    protected String lastName;
+    protected int age;
+    protected String address;
 
     @ManyToOne
     @JoinColumn(name = "LIBRARY_ID")
-    private Library library;
+    protected Library library;
 
 }

@@ -79,11 +79,9 @@ public class ServiceLibrary {
 
         List<Article> articles = findByNameArticle(nameArticle);
 
-      //  int nb = 1;
-
             for(Article article : articles) {
                 if (article.getTitle().equals(nameArticle) && !article.isBorrowed()) {
-            //        if(nb != 0){
+
                     Emprunt emprunt = Emprunt.builder()
                             .client(client)
                             .library(library)
@@ -92,26 +90,15 @@ public class ServiceLibrary {
                             .build();
                     libraryDao.updateIsBorrowde(article);
                     libraryDao.saveEmprunt(emprunt);
-            //        nb--;
+
                     }
 
                 }
             }
-     //   }
-
-
-//    public List<ExemplaireBook> findByNameArticleExemplaires(String nameArticle) {
-//        return libraryDao.findByNameArticleExemplaires(nameArticle);
-//    }
 
     public List<Emprunt> findByNameOfClientEmprunt(long userId) {
         return libraryDao.findByNameOfClientEmprunt(userId);
     }
-
-
-//    public boolean isValidForExemplaire(String name) {
-//        return libraryDao.isValidForExemplaire(name);
-//    }
 
     public void returnEmprunts(String firstName, long id,  String articleName) {
         libraryDao.returnEmprunts(firstName,id,articleName);

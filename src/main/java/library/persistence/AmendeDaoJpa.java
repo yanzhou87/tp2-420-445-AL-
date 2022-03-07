@@ -1,8 +1,6 @@
 package library.persistence;
 
 import library.model.Amende;
-import library.model.Article;
-import library.model.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

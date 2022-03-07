@@ -18,4 +18,16 @@ public class CD extends Article{
 
     private double durationMovie;
 
+    @Override
+    public String toString() {
+        return "CD{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublication='" + yearPublication + '\'' +
+                ", typeArticle='" + typeArticle + '\'' +
+                ", isBorrowed=" + isBorrowed +
+                ", durationMovie=" + durationMovie +
+                '}';
+    }
 }
