@@ -54,5 +54,6 @@ public class MainLibrary {
         System.out.println(library.findByNameOfClientEmprunt(client.getId()));
 
 
+        System.out.println(library.findByNameLibrary("biblioY"));
     }
 }

@@ -14,4 +14,5 @@ public interface ArticleDao {
 
     void updateIsBorrowde(Article article);
 
+    void createBook(String title, String author, String date, String type);
 }

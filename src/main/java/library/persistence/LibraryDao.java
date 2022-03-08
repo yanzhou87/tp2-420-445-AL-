@@ -2,13 +2,13 @@ package library.persistence;
 
 import library.model.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface LibraryDao {
 
     void saveArticle(Article article);
 
-    void saveUser(LibraryUser user);
 
     List<Article> findByNameArticle(String article);
 
@@ -34,4 +34,11 @@ public interface LibraryDao {
 
     void updateIsBorrowde(Article article);
 
+    void createUser(String firstName, String lastName, int age);
+
+    void createEmprunt(Client client, Library library, String nameArticle, LocalDateTime date);
+
+    void createBook(String title, String author, String date, String type);
+
+    long createLibrary(String name);
 }

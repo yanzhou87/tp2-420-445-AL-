@@ -67,4 +67,15 @@ public class ArticleDaoJpa implements ArticleDao {
         em.close();
 
     }
+
+    @Override
+    public void createBook(String title, String author, String date, String type) {
+        Article book = new Book();
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setYearPublication(date);
+            book.setTypeArticle(type);
+
+        save(book);
+    }
 }

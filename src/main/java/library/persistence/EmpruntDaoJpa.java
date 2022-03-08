@@ -1,11 +1,15 @@
 package library.persistence;
 
+import library.model.Article;
+import library.model.Client;
 import library.model.Emprunt;
+import library.model.Library;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class EmpruntDaoJpa implements EmpruntDao {
@@ -48,5 +52,19 @@ public class EmpruntDaoJpa implements EmpruntDao {
 
         em.getTransaction().commit();
         em.close();
+    }
+
+    @Override
+    public long createEmprunt(Client client, Library library,Article article, LocalDateTime date) {
+
+        Emprunt emprunt = Emprunt.builder()
+                .client(client)
+                .library(library)
+                .article(article)
+                .date(date)
+                .build();
+        saveEmprunt(emprunt);
+
+        return emprunt.getId();
     }
 }

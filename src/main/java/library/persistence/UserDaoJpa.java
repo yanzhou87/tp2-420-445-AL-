@@ -1,5 +1,6 @@
 package library.persistence;
 
+import library.model.Client;
 import library.model.LibraryUser;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,16 @@ import java.util.List;
 
 public class UserDaoJpa implements UserDao {
      private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
+    @Override
+    public void createClient(String firstName, String lastName, int age) {
+
+        LibraryUser client = new Client();
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setAge(age);
+
+        save(client);
+    }
     @Override
     public void save(LibraryUser user) {
         EntityManager em = emf.createEntityManager();

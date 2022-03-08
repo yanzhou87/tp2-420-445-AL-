@@ -14,12 +14,7 @@ public class ServiceLibrary {
     }
 
     public void createClient(String firstName, String lastName, int age) {
-       LibraryUser client = new Client();
-       client.setFirstName(firstName);
-       client.setLastName(lastName);
-       client.setAge(age);
-
-       libraryDao.saveUser(client);
+       libraryDao.createUser(firstName,lastName,age);
     }
 
     public List<LibraryUser> findByNameUser(String firstName){
@@ -27,36 +22,15 @@ public class ServiceLibrary {
     }
 
     public void createBook(String title, String author, String date, String type) {
-        Article book = new Book();
-        book.setTitle(title);
-        book.setAuthor(author);
-        book.setYearPublication(date);
-        book.setTypeArticle(type);
-
-        libraryDao.saveArticle(book);
+        libraryDao.createBook(title, author, date, type);
     }
 
     public List<Article> findByNameArticle(String title) {
         return libraryDao.findByNameArticle(title);
     }
 
-//    public void createExemplairesOfBook(List<Article> articles, int nb, String name) {
-//        for(Article a : articles){
-//                if(a.getTitle().equals(name)){
-//                    for(int i = 0 ; i < nb; i++){
-//                        ExemplaireBook exemplaireBook = new ExemplaireBook();
-//                        exemplaireBook.setBook((Book) a);
-//                        libraryDao.saveExemplaire(exemplaireBook);
-//                }
-//            }
-//        }
-//    }
-
     public void createLibrary(String name) {
-        Library library = Library.builder()
-                .name(name)
-                .build();
-        libraryDao.saveLibrary(library);
+        libraryDao.createLibrary(name);
     }
 
     public Library findByNameLibrary(String name) {
@@ -76,25 +50,8 @@ public class ServiceLibrary {
     }
 
     public void createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
-
-        List<Article> articles = findByNameArticle(nameArticle);
-
-            for(Article article : articles) {
-                if (article.getTitle().equals(nameArticle) && !article.isBorrowed()) {
-
-                    Emprunt emprunt = Emprunt.builder()
-                            .client(client)
-                            .library(library)
-                            .article(article)
-                            .date(date)
-                            .build();
-                    libraryDao.updateIsBorrowde(article);
-                    libraryDao.saveEmprunt(emprunt);
-
-                    }
-
-                }
-            }
+              libraryDao.createEmprunt(client, library, nameArticle, date);
+    }
 
     public List<Emprunt> findByNameOfClientEmprunt(long userId) {
         return libraryDao.findByNameOfClientEmprunt(userId);

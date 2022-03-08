@@ -16,35 +16,6 @@ public class LibraryDaoJpa implements LibraryDao {
     private EmpruntDao empruntDao = new EmpruntDaoJpa();
     private AmendeDao amendeDao = new AmendeDaoJpa();
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
-    @Override
-    public void saveArticle(Article article) {
-          articleDao.save(article);
-    }
-
-    @Override
-    public void saveUser(LibraryUser user) {
-         userDao.save(user);
-    }
-
-    @Override
-    public List<Article> findByNameArticle(String article) {
-        return articleDao.findByNameArticle(article);
-    }
-
-    @Override
-    public Article getArticleById(long id) {
-        return null;
-    }
-
-    @Override
-    public List<LibraryUser> findByNameUser(String name) {
-        return userDao.findByName(name);
-    }
-
-    @Override
-    public LibraryUser getUserById(long id) {
-        return null;
-    }
 
     @Override
     public void saveLibrary(Library library) {
@@ -55,6 +26,15 @@ public class LibraryDaoJpa implements LibraryDao {
 
         em.getTransaction().commit();
         em.close();
+    }
+
+    @Override
+    public long createLibrary(String name) {
+        Library library = Library.builder()
+                .name(name)
+                .build();
+        saveLibrary(library);
+        return library.getId();
     }
 
     @Override
@@ -80,13 +60,47 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public LibraryUser findByIdUser(long id) {
-        return userDao.findByIdUser(id);
+    public void createBook(String title, String author, String date, String type) {
+        articleDao.createBook(title,author,date,type);
+    }
+
+    @Override
+    public void saveArticle(Article article) {
+        articleDao.save(article);
+    }
+
+    @Override
+    public List<Article> findByNameArticle(String article) {
+        return articleDao.findByNameArticle(article);
+    }
+
+    @Override
+    public Article getArticleById(long id) {
+        return null;
     }
 
     @Override
     public List<Article> findByIdArticle(long id) {
         return articleDao.findByIdArticle(id);
+    }
+
+    @Override
+    public void createUser(String firstName, String lastName, int age) {
+        userDao.createClient(firstName,lastName,age);
+    }
+
+    @Override
+    public List<LibraryUser> findByNameUser(String name) {
+        return userDao.findByName(name);
+    }
+
+    @Override
+    public LibraryUser getUserById(long id) {
+        return null;
+    }
+    @Override
+    public LibraryUser findByIdUser(long id) {
+        return userDao.findByIdUser(id);
     }
 
     @Override
@@ -97,6 +111,21 @@ public class LibraryDaoJpa implements LibraryDao {
     @Override
     public List<Emprunt> findByNameOfClientEmprunt(long userId) {
         return empruntDao.findByNameOfClientEmprunt(userId);
+    }
+
+    @Override
+    public void createEmprunt(Client client, Library library, String nameArticle, LocalDateTime date) {
+        List<Article> articles = findByNameArticle(nameArticle);
+        for (Article article : articles) {
+            if (article.getTitle().equals(nameArticle) && !article.isBorrowed()) {
+                empruntDao.createEmprunt(client,library,article,date);
+                updateIsBorrowde(article);
+            }
+        }
+    }
+
+    private void updateEmprunt(Emprunt emprunt) {
+        empruntDao.updateEmprunt(emprunt);
     }
 
     @Override
@@ -141,16 +170,7 @@ public class LibraryDaoJpa implements LibraryDao {
         articleDao.updateIsBorrowde(article);
     }
 
-
-    private void updateEmprunt(Emprunt emprunt) {
-        empruntDao.updateEmprunt(emprunt);
-    }
-
     private void createAmende(Client client, long nbday) {
-        Amende amende = new Amende();
-        amende.setClient(client);
-        amende.setSommeAmende(nbday * amende.getAmendeForDay());
-        amendeDao.saveAmende(amendeDao);
+        amendeDao.createAmende(client,nbday);
     }
-
 }

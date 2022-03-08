@@ -26,7 +26,7 @@ public class Library {
     @ToString.Exclude
     private List<Emprunt> emprunts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "library", fetch = FetchType.EAGER)
     @ToString.Exclude
     private static List<Article> articles = new ArrayList<>();
 
