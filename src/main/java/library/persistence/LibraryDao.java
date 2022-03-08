@@ -20,7 +20,7 @@ public interface LibraryDao {
 
     void saveLibrary(Library library);
 
-    Library findByNameLibrary(String name);
+    List<Library> findByNameLibrary(String name);
 
     LibraryUser findByIdUser(long id);
 
@@ -41,4 +41,6 @@ public interface LibraryDao {
     void createBook(String title, String author, String date, String type);
 
     long createLibrary(String name);
+
+    Library findLibraryById(long libraryId);
 }

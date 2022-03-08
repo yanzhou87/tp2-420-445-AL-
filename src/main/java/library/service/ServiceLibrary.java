@@ -29,11 +29,11 @@ public class ServiceLibrary {
         return libraryDao.findByNameArticle(title);
     }
 
-    public void createLibrary(String name) {
-        libraryDao.createLibrary(name);
+    public long createLibrary(String name) {
+       return libraryDao.createLibrary(name);
     }
 
-    public Library findByNameLibrary(String name) {
+    public List<Library> findByNameLibrary(String name) {
         return libraryDao.findByNameLibrary(name);
     }
 
@@ -60,6 +60,10 @@ public class ServiceLibrary {
     public void returnEmprunts(String firstName, long id,  String articleName) {
         libraryDao.returnEmprunts(firstName,id,articleName);
 
+    }
+
+    public Library findLibraryById(long libraryId) {
+        return libraryDao.findLibraryById(libraryId);
     }
 }
 

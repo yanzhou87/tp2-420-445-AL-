@@ -38,7 +38,20 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public Library findByNameLibrary(String name) {
+    public Library findLibraryById(long libraryId) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        Library library = em.find(Library.class, libraryId);
+
+        em.getTransaction().commit();
+        em.close();
+
+        return library;
+    }
+
+    @Override
+    public List<Library> findByNameLibrary(String name) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -50,13 +63,7 @@ public class LibraryDaoJpa implements LibraryDao {
         em.getTransaction().commit();
         em.close();
 
-        for(Library library : libraries){
-            if(library.getName().equals(name)){
-                return library;
-            }
-        }
-
-        return null;
+        return libraries;
     }
 
     @Override

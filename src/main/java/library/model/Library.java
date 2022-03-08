@@ -22,7 +22,7 @@ public class Library {
 
     private String name;
 
-    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "library")
     @ToString.Exclude
     private List<Emprunt> emprunts = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class Library {
     @ToString.Exclude
     private static List<Article> articles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "library")
     @ToString.Exclude
     private static List<LibraryUser> users = new ArrayList<>();
 
@@ -40,5 +40,14 @@ public class Library {
 
     public void addUser(LibraryUser user){
         users.add(user);
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", articles=" + articles +
+                '}';
     }
 }

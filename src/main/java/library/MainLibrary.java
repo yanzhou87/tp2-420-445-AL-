@@ -12,25 +12,29 @@ public class MainLibrary {
 
         ServiceLibrary library = new ServiceLibrary(new LibraryDaoJpa());
 
-        library.createLibrary("biblioY");
+        var libraryId = library.createLibrary("biblioY");
         System.out.println(library.findByNameLibrary("biblioY"));
 
         library.createClient("yan", "zhou", 33);
-
+//Registration of a new customer
+//Ajout de livres   la biblioth ques
         library.createBook("book","author", "2020-11-01","roman");
         library.createBook("book1","author1","","");
         library.createBook("book2","","","");
 
-        Library librarie = library.findByNameLibrary("biblioY");
+        Library librarie = library.findLibraryById(libraryId);
         List<Article> articles = library.findByNameArticle("book");
 
             for(Article article : articles){
                     library.addArticleInLibrary(article,librarie);
             }
 
-        System.out.println("//////////////   Find Article  ////////////////");
-        System.out.println(library.findByNameArticle("book1"));
-        System.out.println(library.findByNameArticle("book"));
+
+
+
+        System.out.println("//////////////   Find Article of biblioY ////////////////");
+        System.out.println(library.findByNameLibrary("biblioY"));
+
         System.out.println("//////////////   Find All Articles for author   ////////////////");
         System.out.println(library.findByNameArticle("author"));
 
@@ -53,7 +57,5 @@ public class MainLibrary {
         library.returnEmprunts(client.getFirstName(), client.getId(), "book");
         System.out.println(library.findByNameOfClientEmprunt(client.getId()));
 
-
-        System.out.println(library.findByNameLibrary("biblioY"));
     }
 }
