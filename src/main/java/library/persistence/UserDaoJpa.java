@@ -10,9 +10,11 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class UserDaoJpa implements UserDao {
+
      private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
+
     @Override
-    public void createClient(String firstName, String lastName, int age) {
+    public long createClient(String firstName, String lastName, int age) {
 
         LibraryUser client = new Client();
         client.setFirstName(firstName);
@@ -20,6 +22,8 @@ public class UserDaoJpa implements UserDao {
         client.setAge(age);
 
         save(client);
+
+        return client.getId();
     }
     @Override
     public void save(LibraryUser user) {
@@ -53,18 +57,11 @@ public class UserDaoJpa implements UserDao {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final TypedQuery<LibraryUser> query = em.createQuery("select u from LibraryUser u where id = id",LibraryUser.class);
-
-        final List<LibraryUser> users = query.getResultList();
+        LibraryUser client = em.find(LibraryUser.class, id);
 
         em.getTransaction().commit();
         em.close();
 
-        for(LibraryUser user : users){
-            if(user.getId() == id){
-               return user;
-            }
-        }
-        return null;
+       return client;
     }
 }

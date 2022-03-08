@@ -10,9 +10,9 @@ public interface ArticleDao {
 
     List<Article> findByNameArticle(String article);
 
-    List<Article> findByIdArticle(long id);
+    Article findByIdArticle(long id);
 
     void updateIsBorrowde(Article article);
 
-    void createBook(String title, String author, String date, String type);
+    long createBook(String title, String author, String date, String type);
 }

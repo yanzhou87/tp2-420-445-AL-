@@ -26,7 +26,7 @@ public class Library {
     @ToString.Exclude
     private List<Emprunt> emprunts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "library", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "library", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ToString.Exclude
     private static List<Article> articles = new ArrayList<>();
 
@@ -36,6 +36,7 @@ public class Library {
 
     public void addArticle(Article article){
         articles.add(article);
+        article.setLibrary(this);
     }
 
     public void addUser(LibraryUser user){

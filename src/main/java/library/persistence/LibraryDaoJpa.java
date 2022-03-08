@@ -18,6 +18,15 @@ public class LibraryDaoJpa implements LibraryDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
 
     @Override
+    public long createLibrary(String name) {
+        Library library = Library.builder()
+                .name(name)
+                .build();
+        saveLibrary(library);
+        return library.getId();
+    }
+
+    @Override
     public void saveLibrary(Library library) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -26,15 +35,6 @@ public class LibraryDaoJpa implements LibraryDao {
 
         em.getTransaction().commit();
         em.close();
-    }
-
-    @Override
-    public long createLibrary(String name) {
-        Library library = Library.builder()
-                .name(name)
-                .build();
-        saveLibrary(library);
-        return library.getId();
     }
 
     @Override
@@ -67,13 +67,8 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public void createBook(String title, String author, String date, String type) {
-        articleDao.createBook(title,author,date,type);
-    }
-
-    @Override
-    public void saveArticle(Article article) {
-        articleDao.save(article);
+    public long createBook(String title, String author, String date, String type) {
+        return articleDao.createBook(title,author,date,type);
     }
 
     @Override
@@ -87,13 +82,13 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
-    public List<Article> findByIdArticle(long id) {
+    public Article findByIdArticle(long id) {
         return articleDao.findByIdArticle(id);
     }
 
     @Override
-    public void createUser(String firstName, String lastName, int age) {
-        userDao.createClient(firstName,lastName,age);
+    public long createUser(String firstName, String lastName, int age) {
+        return userDao.createClient(firstName,lastName,age);
     }
 
     @Override
@@ -111,24 +106,26 @@ public class LibraryDaoJpa implements LibraryDao {
     }
 
     @Override
+    public long createEmprunt(Client client, Library library, String nameArticle, LocalDateTime date) {
+        List<Article> articles = findByNameArticle(nameArticle);
+        long empruntId = 0;
+        for (Article article : articles) {
+            if (article.getTitle().equals(nameArticle) && !article.isBorrowed()) {
+                empruntId = empruntDao.createEmprunt(client,library,article,date);
+                updateIsBorrowde(article);
+            }
+        }
+        return empruntId;
+    }
+
+    @Override
     public void saveEmprunt(Emprunt emprunt) {
         empruntDao.saveEmprunt(emprunt);
     }
 
     @Override
-    public List<Emprunt> findByNameOfClientEmprunt(long userId) {
+    public Emprunt findByNameOfClientEmprunt(long userId) {
         return empruntDao.findByNameOfClientEmprunt(userId);
-    }
-
-    @Override
-    public void createEmprunt(Client client, Library library, String nameArticle, LocalDateTime date) {
-        List<Article> articles = findByNameArticle(nameArticle);
-        for (Article article : articles) {
-            if (article.getTitle().equals(nameArticle) && !article.isBorrowed()) {
-                empruntDao.createEmprunt(client,library,article,date);
-                updateIsBorrowde(article);
-            }
-        }
     }
 
     private void updateEmprunt(Emprunt emprunt) {
@@ -137,39 +134,39 @@ public class LibraryDaoJpa implements LibraryDao {
 
     @Override
     public void returnEmprunts(String firstName, long userId, String articleName) {
-        List<Emprunt> emprunts = findByNameOfClientEmprunt(userId);
-        for(Emprunt e : emprunts){
-            if(e.getClient().getId() == userId){
-                if(e.getArticle().getTitle().equals(articleName)){
-                    if(e.getArticle() instanceof Book){
-                        Duration duration = Duration.between(e.getDate(), LocalDateTime.now());
+        Emprunt emprunt = findByNameOfClientEmprunt(userId);
+
+            if(emprunt.getClient().getId() == userId){
+                if(emprunt.getArticle().getTitle().equals(articleName)){
+                    if(emprunt.getArticle() instanceof Book){
+                        Duration duration = Duration.between(emprunt.getDate(), LocalDateTime.now());
                         long days = duration.toDays();
                         if(days > 21){
                             long nbday = days - 21;
-                            createAmende(e.getClient(),nbday);
+                            createAmende(emprunt.getClient(),nbday);
                         }
                     }
-                    if(e.getArticle() instanceof CD){
-                        Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
+                    if(emprunt.getArticle() instanceof CD){
+                        Duration duration = Duration.between(emprunt.getDate(),LocalDateTime.now());
                         long days = duration.toDays();
                         if(days > 14){
                             long nbday = days - 14;
-                            createAmende(e.getClient(),nbday);
+                            createAmende(emprunt.getClient(),nbday);
                         }
                     }
-                    if(e.getArticle() instanceof DVD){
-                        Duration duration = Duration.between(e.getDate(),LocalDateTime.now());
+                    if(emprunt.getArticle() instanceof DVD){
+                        Duration duration = Duration.between(emprunt.getDate(),LocalDateTime.now());
                         long days = duration.toDays();
                         if(days > 7){
                             long nbday = days - 7;
-                            createAmende(e.getClient(),nbday);
+                            createAmende(emprunt.getClient(),nbday);
                         }
                     }
-                    updateEmprunt(e);
-                    articleDao.updateIsBorrowde(e.getArticle());
+                    updateEmprunt(emprunt);
+                    articleDao.updateIsBorrowde(emprunt.getArticle());
                 }
             }
-      }
+
     }
 
     @Override
@@ -177,7 +174,7 @@ public class LibraryDaoJpa implements LibraryDao {
         articleDao.updateIsBorrowde(article);
     }
 
-    private void createAmende(Client client, long nbday) {
-        amendeDao.createAmende(client,nbday);
+    private long createAmende(Client client, long nbday) {
+        return amendeDao.createAmende(client,nbday);
     }
 }

@@ -13,16 +13,16 @@ public class ServiceLibrary {
         this.libraryDao = libraryDao;
     }
 
-    public void createClient(String firstName, String lastName, int age) {
-       libraryDao.createUser(firstName,lastName,age);
+    public long createClient(String firstName, String lastName, int age) {
+       return libraryDao.createUser(firstName,lastName,age);
     }
 
     public List<LibraryUser> findByNameUser(String firstName){
         return libraryDao.findByNameUser(firstName);
     }
 
-    public void createBook(String title, String author, String date, String type) {
-        libraryDao.createBook(title, author, date, type);
+    public long createBook(String title, String author, String date, String type) {
+       return libraryDao.createBook(title, author, date, type);
     }
 
     public List<Article> findByNameArticle(String title) {
@@ -45,15 +45,15 @@ public class ServiceLibrary {
         return libraryDao.findByIdUser(id);
     }
 
-    public List<Article> findByIdArticle(long id) {
+    public Article findByIdArticle(long id) {
         return libraryDao.findByIdArticle(id);
     }
 
-    public void createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
-              libraryDao.createEmprunt(client, library, nameArticle, date);
+    public long createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
+           return   libraryDao.createEmprunt(client, library, nameArticle, date);
     }
 
-    public List<Emprunt> findByNameOfClientEmprunt(long userId) {
+    public Emprunt findByNameOfClientEmprunt(long userId) {
         return libraryDao.findByNameOfClientEmprunt(userId);
     }
 

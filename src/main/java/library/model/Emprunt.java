@@ -31,4 +31,15 @@ public class Emprunt {
     private boolean isReturn = false;
 
 
+    @Override
+    public String toString() {
+        return "Emprunt{" +
+                "id=" + id +
+                ", client=" + client.getFirstName() + " " + client.getLastName() +
+                ", article=" + article +
+                ", library=" + library.getName() +
+                ", date=" + date +
+                ", isReturn=" + isReturn +
+                '}';
+    }
 }

@@ -10,22 +10,35 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class EmpruntDaoJpa implements EmpruntDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
     UserDao userDao = new UserDaoJpa();
+
     @Override
-    public List<Emprunt> findByNameOfClientEmprunt(long userId) {
+    public long createEmprunt(Client client, Library library,Article article, LocalDateTime date) {
+
+        Emprunt emprunt = Emprunt.builder()
+                .client(client)
+                .library(library)
+                .article(article)
+                .date(date)
+                .build();
+        saveEmprunt(emprunt);
+
+        return emprunt.getId();
+    }
+    @Override
+    public Emprunt findByNameOfClientEmprunt(long userId) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
         TypedQuery<Emprunt> query = em.createQuery("select e from Emprunt e where client.id = :userIdToSearch",Emprunt.class);
         query.setParameter("userIdToSearch", userId);
 
-        List<Emprunt> emprunts = query.getResultList();
+        Emprunt emprunt = query.getSingleResult();
 
-        return emprunts;
+        return emprunt;
     }
 
     @Override
@@ -52,19 +65,5 @@ public class EmpruntDaoJpa implements EmpruntDao {
 
         em.getTransaction().commit();
         em.close();
-    }
-
-    @Override
-    public long createEmprunt(Client client, Library library,Article article, LocalDateTime date) {
-
-        Emprunt emprunt = Emprunt.builder()
-                .client(client)
-                .library(library)
-                .article(article)
-                .date(date)
-                .build();
-        saveEmprunt(emprunt);
-
-        return emprunt.getId();
     }
 }

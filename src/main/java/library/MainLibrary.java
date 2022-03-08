@@ -10,52 +10,50 @@ import java.util.List;
 public class MainLibrary {
     public static void main(String[] args) {
 
-        ServiceLibrary library = new ServiceLibrary(new LibraryDaoJpa());
+        ServiceLibrary serviceLibrary = new ServiceLibrary(new LibraryDaoJpa());
 
-        var libraryId = library.createLibrary("biblioY");
-        System.out.println(library.findByNameLibrary("biblioY"));
+        var libraryId = serviceLibrary.createLibrary("biblioY");
+        System.out.println(serviceLibrary.findByNameLibrary("biblioY"));
 
-        library.createClient("yan", "zhou", 33);
+        var client1 = serviceLibrary.createClient("yan", "zhou", 33);
 //Registration of a new customer
+        System.out.println(serviceLibrary.findByIdUser(client1));
 //Ajout de livres   la biblioth ques
-        library.createBook("book","author", "2020-11-01","roman");
-        library.createBook("book1","author1","","");
-        library.createBook("book2","","","");
+        var book1Id = serviceLibrary.createBook("book","author", "2020-11-01","roman");
+        var book2Id = serviceLibrary.createBook("book1","author1","","");
+        var book3Id = serviceLibrary.createBook("book2","","","");
 
-        Library librarie = library.findLibraryById(libraryId);
-        List<Article> articles = library.findByNameArticle("book");
+        Library librarie = serviceLibrary.findLibraryById(libraryId);
+        List<Article> articles = serviceLibrary.findByNameArticle("book");
 
             for(Article article : articles){
-                    library.addArticleInLibrary(article,librarie);
+                    serviceLibrary.addArticleInLibrary(article,librarie);
             }
 
-
-
-
-        System.out.println("//////////////   Find Article of biblioY ////////////////");
-        System.out.println(library.findByNameLibrary("biblioY"));
+        System.out.println("//////////////   Find biblioY ////////////////");
+        System.out.println(serviceLibrary.findByNameLibrary("biblioY"));
 
         System.out.println("//////////////   Find All Articles for author   ////////////////");
-        System.out.println(library.findByNameArticle("author"));
+        System.out.println(serviceLibrary.findByNameArticle("author"));
 
         System.out.println("//////////////   Find Users   ////////////////");
-        System.out.println(library.findByNameUser("yan"));
+        System.out.println(serviceLibrary.findByNameUser("yan"));
 
         System.out.println("//////////////   Find All User for id 1 ////////////////");
-        LibraryUser client = library.findByIdUser(1L);
+        LibraryUser client = serviceLibrary.findByIdUser(1L);
         System.out.println(client);
 
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");
         LocalDateTime date = LocalDateTime.now();
-        library.createEmprunt((Client) client, librarie, "book", date);
-        System.out.println(library.findByNameOfClientEmprunt(client.getId()));
+        serviceLibrary.createEmprunt((Client) client, librarie, "book", date);
+        System.out.println(serviceLibrary.findByNameOfClientEmprunt(client.getId()));
 
         System.out.println("//////////////   After borrowing  ////////////////");
-        System.out.println(library.findByNameArticle("book"));
+        System.out.println(serviceLibrary.findByNameArticle("book"));
 
         System.out.println("//////////////   return emprunt  ////////////////");
-        library.returnEmprunts(client.getFirstName(), client.getId(), "book");
-        System.out.println(library.findByNameOfClientEmprunt(client.getId()));
+        serviceLibrary.returnEmprunts(client.getFirstName(), client.getId(), "book");
+        System.out.println(serviceLibrary.findByNameOfClientEmprunt(client.getId()));
 
     }
 }

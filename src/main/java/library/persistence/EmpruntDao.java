@@ -6,12 +6,10 @@ import library.model.Emprunt;
 import library.model.Library;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public interface EmpruntDao {
 
-
-    List<Emprunt> findByNameOfClientEmprunt(long userId);
+    Emprunt findByNameOfClientEmprunt(long userId);
 
     void saveEmprunt(Emprunt emprunt);
 

@@ -40,18 +40,16 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public List<Article> findByIdArticle(long id) {
+    public Article findByIdArticle(long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        final TypedQuery<Article> query = em.createQuery("select a from Article a where id = id",Article.class);
-
-        final List<Article> articles = query.getResultList();
+       Article article = em.find(Article.class, id);
 
         em.getTransaction().commit();
         em.close();
 
-        return articles;
+        return article;
     }
 
     @Override
@@ -69,7 +67,7 @@ public class ArticleDaoJpa implements ArticleDao {
     }
 
     @Override
-    public void createBook(String title, String author, String date, String type) {
+    public long createBook(String title, String author, String date, String type) {
         Article book = new Book();
             book.setTitle(title);
             book.setAuthor(author);
@@ -77,5 +75,7 @@ public class ArticleDaoJpa implements ArticleDao {
             book.setTypeArticle(type);
 
         save(book);
+
+        return book.getId();
     }
 }
