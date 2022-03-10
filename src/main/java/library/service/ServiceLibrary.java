@@ -45,10 +45,6 @@ public class ServiceLibrary {
         return libraryDao.findByIdUser(id);
     }
 
-    public Article findByIdArticle(long id) {
-        return libraryDao.findByIdArticle(id);
-    }
-
     public long createEmprunt(Client client, Library library, String nameArticle,LocalDateTime date) {
            return   libraryDao.createEmprunt(client, library, nameArticle, date);
     }
@@ -59,7 +55,6 @@ public class ServiceLibrary {
 
     public void returnEmprunts(String firstName, long id,  String articleName) {
         libraryDao.returnEmprunts(firstName,id,articleName);
-
     }
 
     public Library findLibraryById(long libraryId) {

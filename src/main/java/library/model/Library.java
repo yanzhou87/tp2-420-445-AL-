@@ -1,7 +1,6 @@
 package library.model;
 
 import lombok.*;
-import org.h2.engine.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class Library {
     private List<Emprunt> emprunts = new ArrayList<>();
 
     @OneToMany(mappedBy = "library", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @ToString.Exclude
+   // @ToString.Exclude
     private static List<Article> articles = new ArrayList<>();
 
     @OneToMany(mappedBy = "library")

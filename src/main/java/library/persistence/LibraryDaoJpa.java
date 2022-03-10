@@ -138,30 +138,6 @@ public class LibraryDaoJpa implements LibraryDao {
 
             if(emprunt.getClient().getId() == userId){
                 if(emprunt.getArticle().getTitle().equals(articleName)){
-                    if(emprunt.getArticle() instanceof Book){
-                        Duration duration = Duration.between(emprunt.getDate(), LocalDateTime.now());
-                        long days = duration.toDays();
-                        if(days > 21){
-                            long nbday = days - 21;
-                            createAmende(emprunt.getClient(),nbday);
-                        }
-                    }
-                    if(emprunt.getArticle() instanceof CD){
-                        Duration duration = Duration.between(emprunt.getDate(),LocalDateTime.now());
-                        long days = duration.toDays();
-                        if(days > 14){
-                            long nbday = days - 14;
-                            createAmende(emprunt.getClient(),nbday);
-                        }
-                    }
-                    if(emprunt.getArticle() instanceof DVD){
-                        Duration duration = Duration.between(emprunt.getDate(),LocalDateTime.now());
-                        long days = duration.toDays();
-                        if(days > 7){
-                            long nbday = days - 7;
-                            createAmende(emprunt.getClient(),nbday);
-                        }
-                    }
                     updateEmprunt(emprunt);
                     articleDao.updateIsBorrowde(emprunt.getArticle());
                 }
