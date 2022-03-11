@@ -13,12 +13,9 @@ public class MainLibrary {
         ServiceLibrary serviceLibrary = new ServiceLibrary(new LibraryDaoJpa());
 
         var libraryId = serviceLibrary.createLibrary("biblioY");
-        System.out.println(serviceLibrary.findByNameLibrary("biblioY"));
 
-        var client1 = serviceLibrary.createClient("yan", "zhou", 33);
-//Registration of a new customer
-        System.out.println(serviceLibrary.findByIdUser(client1));
-//Ajout de livres   la biblioth ques
+        var emprunteurId = serviceLibrary.createClient("yan", "zhou", 33);
+
         var book1Id = serviceLibrary.createBook("book","author", "2020-11-01","roman");
         var book2Id = serviceLibrary.createBook("book1","author1","","");
         var book3Id = serviceLibrary.createBook("book2","","","");
@@ -40,7 +37,7 @@ public class MainLibrary {
         System.out.println(serviceLibrary.findByNameUser("yan"));
 
         System.out.println("//////////////   Find All User for id 1 ////////////////");
-        LibraryUser client = serviceLibrary.findByIdUser(1L);
+        LibraryUser client = serviceLibrary.findByIdUser(emprunteurId);
         System.out.println(client);
 
         System.out.println("//////////////   Find All Emprunt for client name  ////////////////");

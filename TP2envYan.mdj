@@ -152,7 +152,7 @@
 											"top": 109,
 											"width": 167.96533203125,
 											"height": 13,
-											"text": "+amendes: List<Amende>",
+											"text": "-amendes: List<Amende>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -581,7 +581,7 @@
 											"top": 267,
 											"width": 159,
 											"height": 13,
-											"text": "-id: int",
+											"text": "#id: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -598,7 +598,7 @@
 											"top": 282,
 											"width": 159,
 											"height": 13,
-											"text": "-fristName: String",
+											"text": "#fristName: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -615,7 +615,7 @@
 											"top": 297,
 											"width": 159,
 											"height": 13,
-											"text": "-lastName: String",
+											"text": "#lastName: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -632,7 +632,7 @@
 											"top": 312,
 											"width": 159,
 											"height": 13,
-											"text": "-age: int",
+											"text": "#age: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -649,7 +649,7 @@
 											"top": 327,
 											"width": 159,
 											"height": 13,
-											"text": "-address: String",
+											"text": "#address: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -666,7 +666,7 @@
 											"top": 342,
 											"width": 159,
 											"height": 13,
-											"text": "+library: Library",
+											"text": "#library: Library",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1837,7 +1837,7 @@
 											"top": 507,
 											"width": 199,
 											"height": 13,
-											"text": "-id: int",
+											"text": "#id: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1854,7 +1854,7 @@
 											"top": 522,
 											"width": 199,
 											"height": 13,
-											"text": "-title: String",
+											"text": "#title: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1871,7 +1871,7 @@
 											"top": 537,
 											"width": 199,
 											"height": 13,
-											"text": "-author: String",
+											"text": "#author: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1888,7 +1888,7 @@
 											"top": 552,
 											"width": 199,
 											"height": 13,
-											"text": "-yearPublication: String",
+											"text": "#yearPublication: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1905,7 +1905,7 @@
 											"top": 567,
 											"width": 199,
 											"height": 13,
-											"text": "-typeArticle: String",
+											"text": "#typeArticle: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1922,7 +1922,7 @@
 											"top": 582,
 											"width": 199,
 											"height": 13,
-											"text": "-exemplaires: List<exemplaire>",
+											"text": "#exemplaires: List<exemplaire>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1939,7 +1939,7 @@
 											"top": 597,
 											"width": 199,
 											"height": 13,
-											"text": "-library: Library",
+											"text": "#library: Library",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1956,7 +1956,7 @@
 											"top": 612,
 											"width": 199,
 											"height": 13,
-											"text": "-isBorrowed: boolean",
+											"text": "#isBorrowed: boolean",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2746,7 +2746,7 @@
 											"top": 251,
 											"width": 140.16259765625,
 											"height": 13,
-											"text": "+library: Library",
+											"text": "-library: Library",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4500,6 +4500,7 @@
 								"$ref": "AAAAAAF+zRSpGNt2AcE="
 							},
 							"name": "amendes",
+							"visibility": "private",
 							"type": "List<Amende>"
 						}
 					],
@@ -5094,7 +5095,7 @@
 								"$ref": "AAAAAAF+2xDICxnh+hE="
 							},
 							"name": "id",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "int"
 						},
 						{
@@ -5104,7 +5105,7 @@
 								"$ref": "AAAAAAF+2xDICxnh+hE="
 							},
 							"name": "fristName",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5114,7 +5115,7 @@
 								"$ref": "AAAAAAF+2xDICxnh+hE="
 							},
 							"name": "lastName",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5124,7 +5125,7 @@
 								"$ref": "AAAAAAF+2xDICxnh+hE="
 							},
 							"name": "age",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "int"
 						},
 						{
@@ -5134,7 +5135,7 @@
 								"$ref": "AAAAAAF+2xDICxnh+hE="
 							},
 							"name": "address",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5144,6 +5145,7 @@
 								"$ref": "AAAAAAF+2xDICxnh+hE="
 							},
 							"name": "library",
+							"visibility": "protected",
 							"type": {
 								"$ref": "AAAAAAF/CgOIvMZ8OGE="
 							}
@@ -5919,7 +5921,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "id",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "int"
 						},
 						{
@@ -5929,7 +5931,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "title",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5939,7 +5941,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "author",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5949,7 +5951,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "yearPublication",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5959,7 +5961,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "typeArticle",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "String"
 						},
 						{
@@ -5969,7 +5971,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "exemplaires",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "List<exemplaire>"
 						},
 						{
@@ -5979,7 +5981,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "library",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": {
 								"$ref": "AAAAAAF/CgOIvMZ8OGE="
 							}
@@ -5991,7 +5993,7 @@
 								"$ref": "AAAAAAF/CgVUesifP5w="
 							},
 							"name": "isBorrowed",
-							"visibility": "private",
+							"visibility": "protected",
 							"type": "boolean"
 						}
 					]
@@ -6125,6 +6127,7 @@
 								"$ref": "AAAAAAF/LZ/745qGa7c="
 							},
 							"name": "library",
+							"visibility": "private",
 							"type": {
 								"$ref": "AAAAAAF/CgOIvMZ8OGE="
 							}

@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 
 public class EmpruntDaoJpa implements EmpruntDao {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2.exe");
-    UserDao userDao = new UserDaoJpa();
 
     @Override
     public long createEmprunt(Client client, Library library,Article article, LocalDateTime date) {
